@@ -907,6 +907,9 @@ on property:vendor.audio.voice.receiver.status=on
 on property:vendor.audio.voice.receiver.status=off
     write /sys/class/thermal/thermal_message/voice_receiver_state 10001
 
+on property:sys.boot_completed=1
+    restart android-hardware-media-c2-hal-1-2
+
 service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     override
     class hal
