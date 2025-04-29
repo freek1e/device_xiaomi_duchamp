@@ -210,4 +210,5 @@ WIFI_FEATURE_SUPPLICANT_11AX := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
+-include device/xiaomi/duchamp-miuicamera/BoardConfig.mk
 include vendor/xiaomi/duchamp/BoardConfigVendor.mk
