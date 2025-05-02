@@ -344,6 +344,11 @@ PRODUCT_SOONG_NAMESPACES += \
 # Miui Camera
 $(call inherit-product-if-exists, device/xiaomi/duchamp-miuicamera/device.mk)
 
+
+# Thermal files
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/thermals/,$(TARGET_COPY_OUT_ODM)/etc)
+
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal-service.pixel \
