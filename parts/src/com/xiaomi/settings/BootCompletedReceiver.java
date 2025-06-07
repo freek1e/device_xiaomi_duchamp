@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Display.HdrCapabilities;
 import com.xiaomi.settings.display.ColorModeService;
+import com.xiaomi.settings.turbocharging.TurboChargingService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
@@ -28,6 +29,10 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         }
         if (DEBUG)
             Log.d(TAG, "Received boot completed intent");
+
+        // Start TurboChargingService
+        Intent turboChargingIntent = new Intent(context, TurboChargingService.class);
+        context.startService(turboChargingIntent);
 
         // Display
         context.startServiceAsUser(new Intent(context, ColorModeService.class),
