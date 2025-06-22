@@ -14,6 +14,7 @@
 #include <sys/ioctl.h>
 #include <fstream>
 #include <thread>
+#include <chrono>
 
 #include "UdfpsHandler.h"
 #include "mi_disp.h"
@@ -137,6 +138,8 @@ class XiaomiMt6897UdfpsHandler : public UdfpsHandler {
     }
 
     void onFingerDown(uint32_t x, uint32_t y, float /*minor*/, float /*major*/) {
+        if (mAuthSuccess) return;
+
         LOG(DEBUG) << __func__ << "x: " << x << ", y: " << y;
 
         mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_PRESSED);
@@ -188,6 +191,19 @@ class XiaomiMt6897UdfpsHandler : public UdfpsHandler {
         }
     }
 
+    void onAuthenticationSucceeded() {
+        mAuthSuccess = true;
+        onFingerUp();
+        std::thread([this]() {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            mAuthSuccess = false;
+        }).detach();
+    }
+
+    void onAuthenticationFailed() { 
+        onFingerUp(); 
+    }
+
     void cancel() {
         LOG(DEBUG) << __func__;
         onFingerUp();
@@ -197,6 +213,7 @@ class XiaomiMt6897UdfpsHandler : public UdfpsHandler {
     fingerprint_device_t* mDevice;
     android::base::unique_fd touch_fd_;
     android::base::unique_fd disp_fd_;
+    bool mAuthSuccess = false;
 
     void setFingerDown(bool pressed) {
         int buf[MAX_BUF_SIZE] = {MI_DISP_PRIMARY, Touch_Fod_Enable, pressed ? 1 : 0};
