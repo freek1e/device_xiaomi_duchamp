@@ -21,6 +21,16 @@
       ]
     },
     {
+      "Name": "FODEnable",
+      "Path": "/sys/devices/platform/goodix_ts.0/goodix_ts_fod",
+      "Values": [
+        "0",
+        "1"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "GpuPwrLevel",
       "Path": "/proc/gpufreqv2/fix_target_opp_index",
       "Values": [
@@ -560,6 +570,12 @@
       "Node": "ThermalMessage",
       "Duration": 0,
       "Value": "6"
+    },
+    {
+      "PowerHint": "DISPLAY_INACTIVE",
+      "Node": "FODEnable",
+      "Duration": 0,
+      "Value": "1"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
