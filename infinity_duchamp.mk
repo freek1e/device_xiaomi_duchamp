@@ -17,6 +17,7 @@ $(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 # Infinity X Stuff
 INFINITY_BUILD_TYPE := UNOFFICIAL
 INFINITY_MAINTAINER := "Kemji"
+TARGET_HAS_UDFPS := true
 WITH_GAPPS := true
 
 PRODUCT_NAME := lineage_duchamp
