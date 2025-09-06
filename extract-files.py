@@ -21,7 +21,6 @@ namespace_imports = [
     'device/xiaomi/duchamp',
     'hardware/mediatek',
     'hardware/xiaomi',
-    'hardware/dolby',
 ]
 
 
