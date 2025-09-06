@@ -33,8 +33,7 @@ lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     ('libmialgo_aio_seg',
      'libmialgo_utils',
-     'vendor.mediatek.hardware.videotelephony-V1-ndk',
-     'vendor.xiaomi.hw.touchfeature-V1-ndk'): lib_fixup_vendor_suffix,
+     'vendor.mediatek.hardware.videotelephony-V1-ndk',): lib_fixup_vendor_suffix,
 }
 
 

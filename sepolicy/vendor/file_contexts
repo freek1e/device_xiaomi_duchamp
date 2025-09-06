@@ -100,8 +100,6 @@
 /sys/class/power_supply/battery/constant_charge_current                                                u:object_r:sysfs_power_supply:s0
 /sys/class/power_supply/usb/online                                                                     u:object_r:sysfs_power_supply:s0
 
-# TouchFeature
-/(odm|vendor/odm|system/vendor)/bin/hw/vendor\.xiaomi\.hw\.touchfeature-service                        u:object_r:hal_touchfeature_xiaomi_default_exec:s0
 
 # Thermal
 /(vendor|system/vendor)/bin/mi_thermald                                                                u:object_r:vendor_mi_thermald_exec:s0
