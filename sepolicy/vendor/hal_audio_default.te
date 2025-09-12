@@ -9,3 +9,5 @@ allow hal_audio_default sensors_device:chr_file rw_file_perms;
 allow hal_audio_default sound_device:chr_file rw_file_perms;
 allow hal_audio_default sysfs_f0_value:file r_file_perms;
 allow hal_audio_default sysfs_re25_calib:file rw_file_perms;
+
+allow hal_audio_default default_prop:file rw_file_perms;

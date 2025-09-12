@@ -263,8 +263,6 @@ public final class ThermalUtils {
 
         if (AppUtils.isBrowserApp(mContext, packageName, UserHandle.myUserId())) {
             return STATE_BROWSER;
-        } else if (DefaultDialerManager.getDefaultDialerApplication(mContext).equals(packageName)) {
-            return STATE_DIALER;
         } else if (isCameraApp(packageName)) {
             return STATE_CAMERA;
         } else {

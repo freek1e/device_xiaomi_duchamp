@@ -285,7 +285,7 @@ public class PowertoolsSettingsFragment extends PreferenceFragmentCompat
             }
             GPUUtils.setGPUMinFrequency(newMin);
             Toast.makeText(getActivity(),
-                    "GPU min frequency -> " + formatFrequency(newMinVal),
+                    "GPU min frequency -> " + formatFrequencyGPU(newMinVal),
                     Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -303,7 +303,7 @@ public class PowertoolsSettingsFragment extends PreferenceFragmentCompat
             }
             GPUUtils.setGPUMaxFrequency(newMax);
             Toast.makeText(getActivity(),
-                    "GPU max frequency -> " + formatFrequency(newMaxVal),
+                    "GPU max frequency -> " + formatFrequencyGPU(newMaxVal),
                     Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -465,6 +465,10 @@ public class PowertoolsSettingsFragment extends PreferenceFragmentCompat
     }
 
     private String formatFrequency(long freqHz) {
+        long mhz = freqHz / 1_000;
+        return mhz + "MHz";
+    }
+    private String formatFrequencyGPU(long freqHz) {
         long mhz = freqHz / 1_000_000;
         return mhz + "MHz";
     }

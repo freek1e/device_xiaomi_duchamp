@@ -952,6 +952,24 @@ on property:sys.boot_completed=1
     chmod 0664 /sys/devices/system/cpu/cpufreq/policy7/scaling_max_freq
     chmod 0664 /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 
+# Allow Core Control
+    chown system system /sys/devices/system/cpu/cpu0/online
+    chown system system /sys/devices/system/cpu/cpu1/online
+    chown system system /sys/devices/system/cpu/cpu2/online
+    chown system system /sys/devices/system/cpu/cpu3/online
+    chown system system /sys/devices/system/cpu/cpu4/online
+    chown system system /sys/devices/system/cpu/cpu5/online
+    chown system system /sys/devices/system/cpu/cpu6/online
+    chown system system /sys/devices/system/cpu/cpu7/online
+    chmod 0660 /sys/devices/system/cpu/cpu0/online
+    chmod 0660 /sys/devices/system/cpu/cpu1/online
+    chmod 0660 /sys/devices/system/cpu/cpu2/online
+    chmod 0660 /sys/devices/system/cpu/cpu3/online
+    chmod 0660 /sys/devices/system/cpu/cpu4/online
+    chmod 0660 /sys/devices/system/cpu/cpu5/online
+    chmod 0660 /sys/devices/system/cpu/cpu6/online
+    chmod 0660 /sys/devices/system/cpu/cpu7/online
+
 on property:vendor.post_boot.parsed=1
      # Set default thermal profile
      write /sys/class/thermal/thermal_message/sconfig 0
@@ -1029,20 +1047,4 @@ on property:persist.sys.parts.cpu.prime.governor=*
     write /sys/devices/system/cpu/cpufreq/policy7/scaling_governor ${persist.sys.parts.cpu.prime.governor}
 
 
-# Allow Core Control
-    chown system system /sys/devices/system/cpu/cpu0/online
-    chown system system /sys/devices/system/cpu/cpu1/online
-    chown system system /sys/devices/system/cpu/cpu2/online
-    chown system system /sys/devices/system/cpu/cpu3/online
-    chown system system /sys/devices/system/cpu/cpu4/online
-    chown system system /sys/devices/system/cpu/cpu5/online
-    chown system system /sys/devices/system/cpu/cpu6/online
-    chown system system /sys/devices/system/cpu/cpu7/online
-    chmod 0660 /sys/devices/system/cpu/cpu0/online
-    chmod 0660 /sys/devices/system/cpu/cpu1/online
-    chmod 0660 /sys/devices/system/cpu/cpu2/online
-    chmod 0660 /sys/devices/system/cpu/cpu3/online
-    chmod 0660 /sys/devices/system/cpu/cpu4/online
-    chmod 0660 /sys/devices/system/cpu/cpu5/online
-    chmod 0660 /sys/devices/system/cpu/cpu6/online
-    chmod 0660 /sys/devices/system/cpu/cpu7/online
+

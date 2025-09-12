@@ -52,159 +52,206 @@
     </string-array>
 
     <!-- GPU Frequency Options (Common Higher Frequencies) -->
-    <string-array name="gpu_frequency_entries" translatable="false">
-        <item>610MHz</item>
-        <item>710MHz</item>
-        <item>800MHz</item>
-        <item>900MHz</item>
-        <item>1100MHz</item>
-        <item>1200MHz</item>
-        <item>1300MHz</item>
+     <string-array name="gpu_frequency_entries" translatable="false">
+        <item>265MHz</item>
+        <item>502MHz</item>
+        <item>701MHz</item>
+        <item>852MHz</item>
+        <item>981MHz</item>
+        <item>1140MHz</item>
+        <item>1271MHz</item>
         <item>1400MHz</item>
     </string-array>
 
     <string-array name="gpu_frequency_values" translatable="false">
-        <item>601000000</item>
+        <item>265000000</item>
+        <item>502000000</item>
         <item>701000000</item>
-        <item>800000000</item>
-        <item>900000000</item>
-        <item>1110000000</item>
-        <item>1222000000</item>
-        <item>1335000000</item>
+        <item>852000000</item>
+        <item>981000000</item>
+        <item>1142000000</item>
+        <item>1271000000</item>
         <item>1400000000</item>
     </string-array>
 
-<!-- CPU Little Cluster Frequencies -->
+    <!-- CPU Little Cluster Frequencies -->
     <string-array name="cpu_little_freq_entries" translatable="false">
-        <item>307MHz</item>
-        <item>441MHz</item>
-        <item>556MHz</item>
-        <item>672MHz</item>
-        <item>787MHz</item>
-        <item>902MHz</item>
-        <item>1017MHz</item>
-        <item>1113MHz</item>
-        <item>1228MHz</item>
-        <item>1344MHz</item>
-        <item>1459MHz</item>
-        <item>1555MHz</item>
-        <item>1670MHz</item>
-        <item>1785MHz</item>
+        <item>480MHz</item>
+        <item>600MHz</item>
+        <item>700MHz</item>
+        <item>800MHz</item>
+        <item>900MHz</item>
+        <item>1000MHz</item>
+        <item>1100MHz</item>
+        <item>1200MHz</item>
+        <item>1300MHz</item>
+        <item>1400MHz</item>
+        <item>1500MHz</item>
+        <item>1600MHz</item>
+        <item>1700MHz</item>
+        <item>1800MHz</item>
         <item>1900MHz</item>
-        <item>2016MHz</item>
+        <item>2000MHz</item>
+        <item>2100MHz</item>
+        <item>2200MHz</item>
     </string-array>
     <string-array name="cpu_little_freq_values" translatable="false">
-        <item>307200</item>
-        <item>441600</item>
-        <item>556800</item>
-        <item>672000</item>
-        <item>787200</item>
-        <item>902400</item>
-        <item>1017600</item>
-        <item>1113600</item>
-        <item>1228800</item>
-        <item>1344000</item>
-        <item>1459200</item>
-        <item>1555200</item>
-        <item>1670400</item>
-        <item>1785600</item>
-        <item>1900800</item>
-        <item>2016000</item>
+        <item>480000</item>
+        <item>600000</item>
+        <item>700000</item>
+        <item>800000</item>
+        <item>900000</item>
+        <item>1000000</item>
+        <item>1100000</item>
+        <item>1200000</item>
+        <item>1300000</item>
+        <item>1400000</item>
+        <item>1500000</item>
+        <item>1600000</item>
+        <item>1700000</item>
+        <item>1800000</item>
+        <item>1900000</item>
+        <item>2000000</item>
+        <item>2100000</item>
+        <item>2200000</item>
     </string-array>
 
-<!-- CPU Big Cluster Frequencies -->
+
+    <!-- CPU Big Cluster Frequencies -->
     <string-array name="cpu_big_freq_entries" translatable="false">
-        <item>499MHz</item>
-        <item>614MHz</item>
-        <item>729MHz</item>
-        <item>844MHz</item>
-        <item>940MHz</item>
-        <item>1056MHz</item>
-        <item>1171MHz</item>
-        <item>1286MHz</item>
-        <item>1401MHz</item>
-        <item>1536MHz</item>
-        <item>1651MHz</item>
-        <item>1785MHz</item>
-        <item>1920MHz</item>
-        <item>2054MHz</item>
-        <item>2188MHz</item>
-        <item>2323MHz</item>
-        <item>2457MHz</item>
-        <item>2592MHz</item>
-        <item>2707MHz</item>
-        <item>2803MHz</item>
+        <item>400MHz</item>
+        <item>500MHz</item>
+        <item>600MHz</item>
+        <item>700MHz</item>
+        <item>800MHz</item>
+        <item>900MHz</item>
+        <item>1000MHz</item>
+        <item>1100MHz</item>
+        <item>1200MHz</item>
+        <item>1300MHz</item>
+        <item>1400MHz</item>
+        <item>1500MHz</item>
+        <item>1600MHz</item>
+        <item>1700MHz</item>
+        <item>1800MHz</item>
+        <item>1900MHz</item>
+        <item>2000MHz</item>
+        <item>2100MHz</item>
+        <item>2200MHz</item>
+        <item>2300MHz</item>
+        <item>2400MHz</item>
+        <item>2500MHz</item>
+        <item>2600MHz</item>
+        <item>2660MHz</item>
+        <item>2800MHz</item>
+        <item>2850MHz</item>
+        <item>2900MHz</item>
+        <item>3000MHz</item>
+        <item>3100MHz</item>
+        <item>3200MHz</item>
     </string-array>
     <string-array name="cpu_big_freq_values" translatable="false">
-        <item>499200</item>
-        <item>614400</item>
-        <item>729600</item>
-        <item>844800</item>
-        <item>940800</item>
-        <item>1056000</item>
-        <item>1171200</item>
-        <item>1286400</item>
-        <item>1401600</item>
-        <item>1536000</item>
-        <item>1651200</item>
-        <item>1785600</item>
-        <item>1920000</item>
-        <item>2054400</item>
-        <item>2188800</item>
-        <item>2323200</item>
-        <item>2457600</item>
-        <item>2592000</item>
-        <item>2707200</item>
-        <item>2803200</item>
+        <item>400000</item>
+        <item>500000</item>
+        <item>600000</item>
+        <item>700000</item>
+        <item>800000</item>
+        <item>900000</item>
+        <item>1000000</item>
+        <item>1100000</item>
+        <item>1200000</item>
+        <item>1300000</item>
+        <item>1400000</item>
+        <item>1500000</item>
+        <item>1600000</item>
+        <item>1700000</item>
+        <item>1800000</item>
+        <item>1900000</item>
+        <item>2000000</item>
+        <item>2100000</item>
+        <item>2200000</item>
+        <item>2300000</item>
+        <item>2400000</item>
+        <item>2500000</item>
+        <item>2600000</item>
+        <item>2660000</item>
+        <item>2800000</item>
+        <item>2850000</item>
+        <item>2900000</item>
+        <item>3000000</item>
+        <item>3100000</item>
+        <item>3200000</item>
     </string-array>
- 
+
+    
     <!-- CPU Prime Cluster Frequencies -->
     <string-array name="cpu_prime_freq_entries" translatable="false">
-        <item>595MHz</item>
-        <item>729MHz</item>
-        <item>864MHz</item>
-        <item>998MHz</item>
-        <item>1132MHz</item>
-        <item>1248MHz</item>
-        <item>1363MHz</item>
-        <item>1478MHz</item>
-        <item>1593MHz</item>
-        <item>1708MHz</item>
-        <item>1843MHz</item>
-        <item>1977MHz</item>
-        <item>2092MHz</item>
-        <item>2227MHz</item>
-        <item>2342MHz</item>
-        <item>2476MHz</item>
-        <item>2592MHz</item>
-        <item>2726MHz</item>
-        <item>2841MHz</item>
-        <item>2956MHz</item>
-        <item>3187MHz</item>
+        <item>400MHz</item>
+        <item>500MHz</item>
+        <item>600MHz</item>
+        <item>700MHz</item>
+        <item>800MHz</item>
+        <item>900MHz</item>
+        <item>1000MHz</item>
+        <item>1100MHz</item>
+        <item>1200MHz</item>
+        <item>1300MHz</item>
+        <item>1400MHz</item>
+        <item>1500MHz</item>
+        <item>1600MHz</item>
+        <item>1700MHz</item>
+        <item>1800MHz</item>
+        <item>1900MHz</item>
+        <item>2000MHz</item>
+        <item>2100MHz</item>
+        <item>2200MHz</item>
+        <item>2300MHz</item>
+        <item>2400MHz</item>
+        <item>2500MHz</item>
+        <item>2600MHz</item>
+        <item>2700MHz</item>
+        <item>2800MHz</item>
+        <item>2900MHz</item>
+        <item>3000MHz</item>
+        <item>3050MHz</item>
+        <item>3100MHz</item>
+        <item>3200MHz</item>
+        <item>3350MHz</item>
     </string-array>
     <string-array name="cpu_prime_freq_values" translatable="false">
-        <item>595200</item>
-        <item>729600</item>
-        <item>864000</item>
-        <item>998400</item>
-        <item>1132800</item>
-        <item>1248000</item>
-        <item>1363200</item>
-        <item>1478400</item>
-        <item>1593600</item>
-        <item>1708800</item>
-        <item>1843200</item>
-        <item>1977600</item>
-        <item>2092800</item>
-        <item>2227200</item>
-        <item>2342400</item>
-        <item>2476800</item>
-        <item>2592000</item>
-        <item>2726400</item>
-        <item>2841600</item>
-        <item>2956800</item>
-        <item>3187200</item>
+        <item>400000</item>
+        <item>500000</item>
+        <item>600000</item>
+        <item>700000</item>
+        <item>800000</item>
+        <item>900000</item>
+        <item>1000000</item>
+        <item>1100000</item>
+        <item>1200000</item>
+        <item>1300000</item>
+        <item>1400000</item>
+        <item>1500000</item>
+        <item>1600000</item>
+        <item>1700000</item>
+        <item>1800000</item>
+        <item>1900000</item>
+        <item>2000000</item>
+        <item>2100000</item>
+        <item>2200000</item>
+        <item>2300000</item>
+        <item>2400000</item>
+        <item>2500000</item>
+        <item>2600000</item>
+        <item>2700000</item>
+        <item>2800000</item>
+        <item>2900000</item>
+        <item>3000000</item>
+        <item>3050000</item>
+        <item>3100000</item>
+        <item>3200000</item>
+        <item>3350000</item>
     </string-array>
+
  
     <!-- CPU Governor Options (for all clusters) -->
     <string-array name="cpu_governor_entries" translatable="false">

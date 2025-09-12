@@ -59,8 +59,8 @@ public class PowerProfileUtil {
     public static final int MODE_UNKNOWN = 4;
 
     private static final int POWERPROFILE_BALANCE = 0;
-    private static final int POWERPROFILE_GAMING = 6;
-    private static final int POWERPROFILE_PERFORMANCE = 19;
+    private static final int POWERPROFILE_GAMING = 19;
+    private static final int POWERPROFILE_PERFORMANCE = 6;
     private static final int POWERPROFILE_BATTERY_SAVER = 1;
 
     private Context mContext;
@@ -129,12 +129,12 @@ public class PowerProfileUtil {
                 break;
             case MODE_GAMING:
                 thermalValue = POWERPROFILE_GAMING;
-                setPerformanceModeActive(3);
+                setPerformanceModeActive(2);
                 optimizeGameLaunch();
                 break;
             case MODE_PERFORMANCE:
                 thermalValue = POWERPROFILE_PERFORMANCE;
-                setPerformanceModeActive(2);
+                setPerformanceModeActive(3);
                 break;
             case MODE_BATTERY_SAVER:
                 thermalValue = POWERPROFILE_BATTERY_SAVER;
