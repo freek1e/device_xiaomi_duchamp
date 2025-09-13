@@ -1335,6 +1335,9 @@ vendor/etc/init/fuelgauged_init.rc
 vendor/etc/init/fuelgauged_nvram_init.rc
 vendor/lib64/libfgauge_gm30.so
 
+# Game
+vendor/priv-app/GpuGameDriver.mt6897/GpuGameDriver.mt6897.apk
+
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper-service.mitee
 vendor/etc/init/android.hardware.gatekeeper-service.mitee.rc
