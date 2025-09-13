@@ -232,6 +232,12 @@ persist.sys.fuse.passthrough.enable=true
 # Game
 ro.gfx.driver.0?=com.mediatek.mt6897.gamedriver
 
+# HWUI
+ro.hwui.render_ahead=3
+debug.hwui.use_hint_manager=true
+debug.hwui.target_cpu_time_percent=40
+debug.hwui.render_thread_count=2
+
 # GNSS
 ro.vendor.mtk_log_hide_gps=1
 ro.vendor.gps.chrdev=gps_drv_dl_v051
