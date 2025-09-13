@@ -16,15 +16,15 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Turbo Charging -->
-    <string name="turbo_charge_title">Turbo Charging</string>
-    <string name="turbo_enable_title">Enable Turbo Charging</string>
-    <string name="turbo_charge_summary">Enable Turbo Charging for different charging modes up to 67W</string>
+    <string name="turbo_charge_title">Charge Speed Limit</string>
+    <string name="turbo_enable_title">Enable Charge Speed Limit</string>
+    <string name="turbo_charge_summary">Enable Charge Speed Limit for different charging modes up to 67W</string>
     <string name="turbo_charge_current_pref_title">Charging wattage</string>
     <string name="turbo_mode_one">18W</string>
     <string name="turbo_mode_two">30W</string>
     <string name="turbo_mode_three">67W</string>
-    <string name="turbo_charge_tile_label">Turbo Charging</string>
-    <string name="turbo_charge_tile_content_description">Toggle Turbo Charging</string>
+    <string name="turbo_charge_tile_label">Charge Speed Limit</string>
+    <string name="turbo_charge_tile_content_description">Toggle Charge Speed Limit</string>
 
     <!-- Xiaomi Settings -->
     <string name="app_title">Xiaomi Settings</string>
