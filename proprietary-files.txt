@@ -207,6 +207,13 @@ vendor/lib64/libbt-vendor.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio@2.1.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio@2.2.so
+vendor/etc/bluetooth_a2dp_offload_ums_offload_audio_policy_configuration.xml
+vendor/etc/bluetooth_audio_policy_configuration.xml
+vendor/etc/bluetooth_offload_audio_policy_configuration.xml
+vendor/etc/bluetooth_ums_offload_audio_policy_configuration.xml
+vendor/etc/usb_audio_policy_configuration.xml
+vendor/etc/a2dp_audio_policy_configuration.xml
+vendor/etc/a2dp_in_audio_policy_configuration.xml
 
 # Camera
 odm/bin/crossbuild/DataSet/SQLiteModule/db/ae/mt6897/ParameterDB_ae.db;SYMLINK=odm/bin/crossbuild/DataSet/SQLiteModule/db/ae/ParameterDB_ae.db;MAKE_COPY_RULE_ONLY
