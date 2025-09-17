@@ -9,9 +9,10 @@
 #include <android-base/logging.h>
 #include <sys/ioctl.h>
 
-#define SET_CUR_VALUE 0
 #define TOUCH_DOUBLETAP_MODE 14
-#define TOUCH_FOD_ENABLE 10
+#define TOUCH_GAME_MODE 0
+
+#define SET_CUR_VALUE 0
 #define TOUCH_MAGIC 't'
 #define TOUCH_IOC_SETMODE _IO(TOUCH_MAGIC, SET_CUR_VALUE)
 #define TOUCH_DEV_PATH "/dev/xiaomi-touch"
@@ -29,7 +30,7 @@ using ::aidl::android::hardware::power::Mode;
 bool isDeviceSpecificModeSupported(Mode type, bool* _aidl_return) {
     switch (type) {
         case Mode::DOUBLE_TAP_TO_WAKE:
-        case Mode::DISPLAY_INACTIVE:
+        case Mode::GAME:
             *_aidl_return = true;
             return true;
         default:
@@ -46,9 +47,9 @@ bool setDeviceSpecificMode(Mode type, bool enabled) {
             close(fd);
             return true;
         }
-        case Mode::DISPLAY_INACTIVE: {
+        case Mode::GAME: {
             int fd = open(TOUCH_DEV_PATH, O_RDWR);
-            int arg[3] = {TOUCH_ID, TOUCH_FOD_ENABLE, enabled ? 1 : 0};
+            int arg[3] = {TOUCH_ID, TOUCH_GAME_MODE, enabled ? 1 : 0};
             ioctl(fd, TOUCH_IOC_SETMODE, &arg);
             close(fd);
             return true;
