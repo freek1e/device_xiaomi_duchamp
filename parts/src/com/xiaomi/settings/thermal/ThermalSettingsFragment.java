@@ -34,6 +34,7 @@ import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceFragment;
@@ -78,6 +79,17 @@ public class ThermalSettingsFragment extends PreferenceFragment
             mAppsRecyclerView.setVisibility(isChecked ? View.VISIBLE : View.GONE);
         });
         mMainSwitch.setChecked(mThermalUtils.isEnabled());
+    }
+
+    // NEW: Override to inflate custom layout with RecyclerView + attach preferences ListView.
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.thermal_layout, container, false);  // Use your layout XML here.
+        FrameLayout listContainer = view.findViewById(android.R.id.list_container);
+        // Attach the default preference ListView to the container.
+        ViewGroup preferenceList = (ViewGroup) super.onCreateView(inflater, listContainer, savedInstanceState);
+        listContainer.addView(preferenceList);
+        return view;
     }
 
     @Override
