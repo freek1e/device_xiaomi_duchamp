@@ -50,6 +50,7 @@ public class PowerProfileUtil {
     private static final String SYS_PROP = "sys.perf_mode_active";
     private static final int NOTIFICATION_ID_PERFORMANCE = 1001;
     private static final int NOTIFICATION_ID_GAMING = 1002;
+    private static final String SELECTED_MODE_KEY = "selected_power_profile_mode";
 
     // Modes:
     public static final int MODE_BALANCE = 0;
@@ -75,6 +76,13 @@ public class PowerProfileUtil {
         mContext = context;
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        
+        // Load saved mode if it exists
+        if (mSharedPrefs.contains(SELECTED_MODE_KEY)) {
+            mCurrentMode = mSharedPrefs.getInt(SELECTED_MODE_KEY, MODE_BALANCE);
+        } else {
+            mCurrentMode = getCurrentMode();
+        }
         Resources res = mContext.getResources();
         mGamePackages = Arrays.asList(res.getStringArray(R.array.game_packages));
         mModes = new String[]{
@@ -121,6 +129,9 @@ public class PowerProfileUtil {
 
     public void setMode(int mode) {
         mCurrentMode = mode;
+
+        mSharedPrefs.edit().putInt(SELECTED_MODE_KEY, mode).apply();
+
         int thermalValue;
         switch (mode) {
             case MODE_BALANCE:
@@ -169,6 +180,15 @@ public class PowerProfileUtil {
     }
 
     public int getManagedMode() {
+        // Check if we have a saved mode preference
+        if (mSharedPrefs.contains(SELECTED_MODE_KEY)) {
+            mCurrentMode = mSharedPrefs.getInt(SELECTED_MODE_KEY, MODE_BALANCE);
+            // Apply the saved mode to ensure consistency
+            setMode(mCurrentMode);
+            return mCurrentMode;
+        }
+        
+        // Fallback to reading from thermal config
         mCurrentMode = getCurrentMode();
         if (mCurrentMode == MODE_UNKNOWN) {
             mCurrentMode = MODE_BALANCE;
