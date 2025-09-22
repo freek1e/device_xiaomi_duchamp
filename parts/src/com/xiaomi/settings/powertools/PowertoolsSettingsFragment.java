@@ -46,8 +46,8 @@ public class PowertoolsSettingsFragment extends PreferenceFragmentCompat
     private ListPreference mGpuMaxFreqPref;
     private String[] mGpuFreqEntries;
     private String[] mGpuFreqValues;
-    private static final String GPU_DEFAULT_MIN = "220000000";
-    private static final String GPU_DEFAULT_MAX = "680000000";
+    private static final String GPU_DEFAULT_MIN = "265000000";
+    private static final String GPU_DEFAULT_MAX = "1110000000";
 
     // CPU settings keys
     private static final String KEY_CPU_ENABLE = "cpu_enable";
@@ -61,15 +61,15 @@ public class PowertoolsSettingsFragment extends PreferenceFragmentCompat
     private static final String KEY_CPU_PRIME_MAX_FREQ = "cpu_prime_max_frequency";
     private static final String KEY_CPU_PRIME_GOVERNOR = "cpu_prime_governor";
 
-    private static final String CPU_LITTLE_DEFAULT_MIN = "307200";
-    private static final String CPU_LITTLE_DEFAULT_MAX = "2016000";
-    private static final String CPU_LITTLE_DEFAULT_GOV = "walt";
-    private static final String CPU_BIG_DEFAULT_MIN = "499200";
-    private static final String CPU_BIG_DEFAULT_MAX = "2803200";
-    private static final String CPU_BIG_DEFAULT_GOV = "walt";
-    private static final String CPU_PRIME_DEFAULT_MIN = "595200";
-    private static final String CPU_PRIME_DEFAULT_MAX = "3187200";
-    private static final String CPU_PRIME_DEFAULT_GOV = "walt";
+    private static final String CPU_LITTLE_DEFAULT_MIN = "480000";
+    private static final String CPU_LITTLE_DEFAULT_MAX = "1800000";
+    private static final String CPU_LITTLE_DEFAULT_GOV = "schedutil";
+    private static final String CPU_BIG_DEFAULT_MIN = "400000";
+    private static final String CPU_BIG_DEFAULT_MAX = "2800000";
+    private static final String CPU_BIG_DEFAULT_GOV = "schedutil";
+    private static final String CPU_PRIME_DEFAULT_MIN = "400000";
+    private static final String CPU_PRIME_DEFAULT_MAX = "2800000";
+    private static final String CPU_PRIME_DEFAULT_GOV = "schedutil";
 
     // CPU Little Preferences
     private ListPreference mCpuLittleMinFreqPref;
