@@ -5,6 +5,8 @@
         <interface>
             <name>IVibrator</name>
             <instance>vibratorfeature</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.media.c2</name>
         <version>1.0-2</version>
