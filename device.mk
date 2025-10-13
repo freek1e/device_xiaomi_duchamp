@@ -212,6 +212,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     XiaomiParts
 
+# Page size
+PRODUCT_NO_BIONIC_PAGE_SIZE_MACRO := true
+
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -372,9 +375,6 @@ PRODUCT_PACKAGES += \
 # Vibrator
 PRODUCT_PACKAGES += \
     vibratorfeature-wrapper
-
-# Virtualization service
-$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
