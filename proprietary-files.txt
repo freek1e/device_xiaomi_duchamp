@@ -301,10 +301,6 @@ vendor/etc/vintf/manifest/manifest_isphal.xml
 vendor/etc/vintf/manifest/vendor.xiaomi.hardware.bgservice@1.0-service.xml
 vendor/firmware/lib3a.ccu
 vendor/firmware/lib3a.ccu_dummy
-vendor/lib64/hw/mt6897/android.hardware.camera.provider@2.6-impl-mediatek.so;SYMLINK=vendor/lib64/hw/android.hardware.camera.provider@2.6-impl-mediatek.so
-vendor/lib64/hw/mt6897/vendor.mediatek.hardware.camera.atms@1.0-impl.so;SYMLINK=vendor/lib64/hw/vendor.mediatek.hardware.camera.atms@1.0-impl.so
-vendor/lib64/hw/mt6897/vendor.mediatek.hardware.camera.bgservice@1.1-impl.so;SYMLINK=vendor/lib64/hw/vendor.mediatek.hardware.camera.bgservice@1.1-impl.so
-vendor/lib64/hw/mt6897/vendor.mediatek.hardware.camera.isphal@1.1-impl.so;SYMLINK=vendor/lib64/hw/vendor.mediatek.hardware.camera.isphal@1.1-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.camera.atms_aidl@1.0-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.camera.bgservice_aidl@1.0-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.camera.isphal_aidl@1.0-impl.so
@@ -687,10 +683,6 @@ vendor/lib64/mt6897/libmtkcam_hal_core_provider.so;SYMLINK=vendor/lib64/libmtkca
 vendor/lib64/mt6897/libmtkcam_hal_core_utils.so;SYMLINK=vendor/lib64/libmtkcam_hal_core_utils.so
 vendor/lib64/mt6897/libmtkcam_hal_custom.so;SYMLINK=vendor/lib64/libmtkcam_hal_custom.so
 vendor/lib64/mt6897/libmtkcam_hal_custom_provider.so;SYMLINK=vendor/lib64/libmtkcam_hal_custom_provider.so
-vendor/lib64/mt6897/libmtkcam_hal_hidl_common.so;SYMLINK=vendor/lib64/libmtkcam_hal_hidl_common.so
-vendor/lib64/mt6897/libmtkcam_hal_hidl_device.so;SYMLINK=vendor/lib64/libmtkcam_hal_hidl_device.so
-vendor/lib64/mt6897/libmtkcam_hal_hidl_provider.so;SYMLINK=vendor/lib64/libmtkcam_hal_hidl_provider.so
-vendor/lib64/mt6897/libmtkcam_hal_hidl_utils.so;SYMLINK=vendor/lib64/libmtkcam_hal_hidl_utils.so
 vendor/lib64/mt6897/libmtkcam_halisp_custom.so;SYMLINK=vendor/lib64/libmtkcam_halisp_custom.so
 vendor/lib64/mt6897/libmtkcam_hwnode.jpegnode.so;SYMLINK=vendor/lib64/libmtkcam_hwnode.jpegnode.so
 vendor/lib64/mt6897/libmtkcam_hwnode.p2.so;SYMLINK=vendor/lib64/libmtkcam_hwnode.p2.so
@@ -756,15 +748,10 @@ vendor/lib64/mt6897/mtk000_mipi_raw_IdxMgr.so;SYMLINK=vendor/lib64/mtk000_mipi_r
 vendor/lib64/mt6897/mtk000_mipi_raw_tuning.so;SYMLINK=vendor/lib64/mtk000_mipi_raw_tuning.so
 vendor/lib64/vendor.mediatek.hardware.camera.aovservice-V2-ndk.so
 vendor/lib64/vendor.mediatek.hardware.camera.atms-V1-ndk.so
-vendor/lib64/vendor.mediatek.hardware.camera.atms@1.0.so
 vendor/lib64/vendor.mediatek.hardware.camera.bgservice-V1-ndk.so
-vendor/lib64/vendor.mediatek.hardware.camera.bgservice@1.0.so
-vendor/lib64/vendor.mediatek.hardware.camera.bgservice@1.1.so
 vendor/lib64/vendor.mediatek.hardware.camera.ccap@1.0.so
 vendor/lib64/vendor.mediatek.hardware.camera.frhandler@1.0.so
 vendor/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so
-vendor/lib64/vendor.mediatek.hardware.camera.isphal@1.0.so
-vendor/lib64/vendor.mediatek.hardware.camera.isphal@1.1.so
 vendor/lib64/vendor.mediatek.hardware.camera.postproc@1.0.so
 vendor/lib64/vendor.mediatek.hardware.camera.security@1.0.so
 vendor/lib64/vendor.xiaomi.hardware.bgservice@1.0.so
