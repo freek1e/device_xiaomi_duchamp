@@ -384,5 +384,5 @@ PRODUCT_PACKAGES += \
     wpa_supplicant
 
 # Inherit the proprietary files
-#$(call inherit-product-if-exists, device/xiaomi/duchamp-miuicamera/device.mk)
+$(call inherit-product-if-exists, device/xiaomi/duchamp-miuicamera/device.mk)
 $(call inherit-product, vendor/xiaomi/duchamp/duchamp-vendor.mk)
