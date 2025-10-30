@@ -30,8 +30,11 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
-    ('libmialgo_aio_seg',
+    ('libjpegdecoder',
+     'libjpegencoder',
+     'libmialgo_aio_seg',
      'libmialgo_utils',
+     'libultrahdr',
      'vendor.mediatek.hardware.videotelephony-V1-ndk',): lib_fixup_vendor_suffix,
 }
 
@@ -110,9 +113,6 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_lockPlanes')
         .clear_symbol_version('AHardwareBuffer_release')
         .clear_symbol_version('AHardwareBuffer_unlock'),
-
-    'vendor/lib64/mt6897/libmtkcam_hwnode.jpegnode.so': blob_fixup()
-        .add_needed('libultrahdr_shim.so'),
 
     'vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml': blob_fixup()
         .regex_replace('.+dolby.+\n', ''),
