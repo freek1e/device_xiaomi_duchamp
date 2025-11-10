@@ -132,6 +132,9 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
     libudfpshandler
 
+#Dolby
+$(call inherit-product, hardware/dolby/dolby.mk)
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.mediatek \
