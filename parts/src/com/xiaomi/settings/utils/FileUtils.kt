@@ -1,3 +1,5 @@
+@file:JvmName("FileUtils")
+
 /*
  * SPDX-FileCopyrightText: 2016 The CyanogenMod Project
  * SPDX-FileCopyrightText: 2025 Paranoid Android
