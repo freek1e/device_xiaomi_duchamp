@@ -55,9 +55,4 @@
     <string name="turbo_charge_tile_label">Turbo Charging</string>
     <string name="turbo_charge_tile_content_description">Toggle Turbo Charging</string>
 
-    <!-- High Touch Polling -->
-    <string name="htsr_title">Touch Responsiveness</string>
-    <string name="htsr_enable_title">Increase Touch Responsiveness</string>
-    <string name="htsr_enable_summary">Increases touch polling rate to decrease latency</string>
-
 </resources>

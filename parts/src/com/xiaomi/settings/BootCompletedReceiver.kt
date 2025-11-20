@@ -16,7 +16,6 @@ import android.view.Display
 import android.view.Display.HdrCapabilities
 import com.xiaomi.settings.thermal.ThermalUtils
 import com.xiaomi.settings.turbocharging.TurboChargingService
-import com.xiaomi.settings.touchsampling.TouchSamplingUtils
 
 /** Everything begins at boot. */
 class BootCompletedReceiver : BroadcastReceiver() {
@@ -40,9 +39,6 @@ class BootCompletedReceiver : BroadcastReceiver() {
     private fun onLockedBootCompleted(context: Context) {
         // Thermal
         ThermalUtils.getInstance(context).startService()
-
-        // Start HTSR
-        TouchSamplingUtils.restoreSamplingValue(context)
 
         // Start TurboChargingService
         val turboChargingIntent = Intent(context, TurboChargingService::class.java)

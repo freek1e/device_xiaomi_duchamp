@@ -114,7 +114,3 @@
 # Turbo Charge
 /sys/class/power_supply/battery/constant_charge_current                                                u:object_r:sysfs_power_supply:s0
 /sys/class/power_supply/usb/online                                                                     u:object_r:sysfs_power_supply:s0
-
-# HTSR
-/sys/devices/platform/goodix_ts.0/goodix_ts_report_rate                                                u:object_r:sysfs_htsr:s0
-/sys/devices/platform/goodix_ts.0(/.*)?                                                                u:object_r:sysfs:s0

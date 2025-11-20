@@ -9,5 +9,3 @@ allow system_app sysfs_power_supply:dir search;
 allow system_app sysfs_power_supply:file { write setattr };
 allow system_app self:netlink_kobject_uevent_socket { bind create read setopt };
 allow system_app sysfs_power_supply:file { write setattr };
-# HTSR
-allow system_app sysfs_htsr:file rw_file_perms;
