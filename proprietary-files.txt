@@ -70,6 +70,10 @@ vendor/etc/audio_device.xml
 vendor/etc/aurisys_config.xml
 vendor/etc/aurisys_config_hifi3.xml
 vendor/etc/aurisys_config_rv.xml
+<<<<<<< HEAD
+=======
+vendor/etc/usb_audio_accessory_only_policy_configuration.xml
+>>>>>>> 0ac8a20 (duchamp: Move some audio configs to vendor)
 
 # Audio (Parameters)
 vendor/etc/audio_param/AudioParamOptions_mgvi.xml
