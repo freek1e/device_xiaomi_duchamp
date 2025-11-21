@@ -15,9 +15,12 @@ vendor.audio.usb.iems.period_us=5000
 vendor.audiohal.telephonytx.type=2
 
 # Bluetooth
+persist.bluetooth.a2dp_offload.disabled=false
+persist.bluetooth.leaudio_offload.disabled=false
+ro.bluetooth.a2dp_offload.supported=true
+ro.bluetooth.leaudio_offload.supported=true
 ro.vendor.bt.connac3=no
 ro.vendor.bt.platform=6897
-vendor.bluetooth.ldac.abr=true
 
 # Camera
 camera.disable_zsl_mode=1
