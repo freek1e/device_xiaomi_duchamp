@@ -48,6 +48,3 @@ TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
 
 # Touchboost suport
 TARGET_TOUCH_BOOST_SUPPORTED := true
-
-# Bypass Charging
-BYPASS_CHARGE_SUPPORTED := true

@@ -23,7 +23,6 @@ type vendor_persist_display_file, file_type;
 type vendor_fingerprint_sysfs, sysfs_type, fs_type;
 
 # Power
-type sysfs_battery_supply, fs_type, sysfs_type;
 type vendor_touchfeature_device, dev_type;
 
 # Trusted Execution Environment (TEE)
@@ -32,4 +31,3 @@ type proc_mitee_log, fs_type, proc_type;
 
 # Vibrator
 type haptics_data_file, file_type, data_file_type;
-
