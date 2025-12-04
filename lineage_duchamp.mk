@@ -11,7 +11,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from device makefile.
 $(call inherit-product, device/xiaomi/duchamp/device.mk)
 
-# Inherit some common RisingOS stuff.
+# Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 PRODUCT_NAME := lineage_duchamp
@@ -45,6 +45,3 @@ PRODUCT_NO_CAMERA := false
 
 # Whether to ship lawnchair launcher
 TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
-
-# Touchboost suport
-TARGET_TOUCH_BOOST_SUPPORTED := true
