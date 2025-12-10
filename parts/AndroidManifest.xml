@@ -57,6 +57,7 @@
             </intent-filter>
         </service>
 
+        <!-- Turbo Charging -->
         <activity
             android:name=".turbocharging.TurboChargingActivity"
             android:exported="false"
