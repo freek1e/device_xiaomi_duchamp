@@ -391,11 +391,22 @@
       "HoldFd": true
     },
     {
+      "Name": "UclampFGMin",
+      "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
+      "Values": [
+        "0",
+        "10",
+        "30"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "UclampTAMin",
       "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
       "Values": [
         "0",
-        "10",
+        "30",
         "100"
       ],
       "DefaultIndex": 0,
@@ -448,7 +459,7 @@
     },
     {
       "PowerHint": "INTERACTION",
-      "Node": "UclampTAMin",
+      "Node": "UclampFGMin",
       "Duration": 0,
       "Value": "10"
     },
@@ -475,13 +486,13 @@
       "Node": "UclampTAMin",
       "Duration": 2000,
       "Value": "100"
-    }, 
+    },
     {
       "PowerHint": "FIXED_PERFORMANCE",
       "Node": "GpuPwrLevel",
       "Duration": 0,
       "Value": "0"
-    },   
+    },
     {
       "PowerHint": "FIXED_PERFORMANCE",
       "Node": "CPUBigClusterMaxFreq",
@@ -547,6 +558,18 @@
       "Node": "GpuPwrLevel",
       "Duration": 0,
       "Value": "0"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampFGMin",
+      "Duration": 0,
+      "Value": "30"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampTAMin",
+      "Duration": 0,
+      "Value": "30"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
