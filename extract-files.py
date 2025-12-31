@@ -119,6 +119,13 @@ blob_fixups: blob_fixups_user_type = {
 
     'vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature.service.rc': blob_fixup()
         .regex_replace('odm', 'vendor'),
+ 
+   'vendor/lib64/mt6897/libmtkcam_hwnode.jpegnode.so': blob_fixup()
+        .replace_needed('libultrahdr.so', 'libultrahdr-v34.so'),
+
+    'vendor/lib64/libultrahdr-v34.so': blob_fixup()
+        .replace_needed('libjpegencoder.so', 'libjpegencoder-v34.so')
+        .replace_needed('libjpegdecoder.so', 'libjpegdecoder-v34.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
