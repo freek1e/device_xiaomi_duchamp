@@ -27,3 +27,6 @@ type proc_mitee_log, fs_type, proc_type;
 
 # Vibrator
 type haptics_data_file, file_type, data_file_type;
+
+# Core Control
+type vendor_sysfs_corecontrol, fs_type, sysfs_type;
