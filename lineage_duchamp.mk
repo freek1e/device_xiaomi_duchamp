@@ -28,21 +28,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildFingerprint=POCO/duchamp_global/duchamp:14/UP1A.230905.011/OS2.0.205.0.VNLMIXM:user/release-keys \
     DeviceProduct=$(PRODUCT_SYSTEM_NAME)
 
-# Lunch banner maintainer variable
-RISING_MAINTAINER="@adarsh_8300u"
 
-# Set RISING_MAINTAINER for version control 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    RisingChipset="Dimensity 8300-Ultra" \
-    RisingMaintainer="@adarsh_8300u"
-
-RISING_MAINTAINER := @adarsh_8300u
-
-# Disable/enable blur support
-TARGET_ENABLE_BLUR := true
-
-# Whether to ship aperture camera
-PRODUCT_NO_CAMERA := false
-
-# Whether to ship lawnchair launcher
-TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
