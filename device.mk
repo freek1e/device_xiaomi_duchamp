@@ -16,7 +16,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Dolby
-$(call inherit-product, hardware/dolby/dolby.mk)
+$(call inherit-product, $(DEVICE_PATH)/dolby/dolby.mk)
 
 # A/B
 ifneq ($(WITH_GMS),true)
@@ -329,6 +329,10 @@ PRODUCT_COPY_FILES += \
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 34
+
+# Dolby-specific Settings
+PRODUCT_PACKAGES += \
+    dolby
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
