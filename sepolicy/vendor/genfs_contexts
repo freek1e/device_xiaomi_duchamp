@@ -86,3 +86,6 @@ genfscon sysfs /devices/system/cpu/cpu4/online u:object_r:vendor_sysfs_corecontr
 genfscon sysfs /devices/system/cpu/cpu5/online u:object_r:vendor_sysfs_corecontrol:s0
 genfscon sysfs /devices/system/cpu/cpu6/online u:object_r:vendor_sysfs_corecontrol:s0
 genfscon sysfs /devices/system/cpu/cpu7/online u:object_r:vendor_sysfs_corecontrol:s0
+
+# Touch Sampling
+genfscon sysfs /devices/platform/goodix_ts.0/goodix_ts_report_rate                                    u:object_r:vendor_sysfs_htsr:s0

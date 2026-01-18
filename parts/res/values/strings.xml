@@ -68,4 +68,18 @@
     <string name="core_6">Core 6 (Big)</string>
     <string name="core_7">Core 7 (Prime)</string>
 
+    <!-- High Touch Polling -->
+    <string name="htsr_title">High Touch Polling Rate</string>
+    <string name="htsr_enable_title">Enhanced Touch Responsiveness</string>
+    <string name="htsr_enable_summary">Increases touch polling rate to decrease touch input latency for a smoother experience</string>
+    <string name="touch_sampling_mode_title">High Touch Polling Mode</string>
+    <string name="touch_sampling_mode_notification">High Touch Polling Rate is now active. This reduces touch input latency but may increase battery consumption</string>
+    <string name="touch_sampling_tile_label">Touch Boost</string>
+    <string name="tile_on">On</string>
+    <string name="tile_off">Off</string>
+    <string name="htsr_app_added">%1$s added to auto-enable list.</string>
+    <string name="htsr_app_removed">%1$s removed from auto-enable list.</string>
+    <string name="htsr_app_selector_activity_title">Select Apps for High Touch Polling</string>
+    <string name="htsr_app_remover_activity_title">Remove Auto-Enable Apps</string>
+
 </resources>
