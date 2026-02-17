@@ -16,10 +16,6 @@
     <!-- boolean indicating whether the WiFi chipset has 6GHz band support -->
     <bool translatable="false" name="config_wifi6ghzSupport">true</bool>
 
-    <!-- Indicates that bridged AP mode is supported on this device provided that
-         the device interface combination allows for it -->
-    <bool translatable="false" name="config_wifiBridgedSoftApSupported">true</bool>
-
     <!-- Boolean indicating whether the Easy Connect (DPP) AKM is supported -->
     <bool translatable="false" name="config_wifiDppAkmSupported">true</bool>
 
