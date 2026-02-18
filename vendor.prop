@@ -25,6 +25,8 @@ ro.vendor.audio.device.db=DB_XM
 ro.vendor.audio.device.dbcom=dolby_common
 
 # Bluetooth
+persist.bluetooth.a2dp_offload.disabled=false
+ro.bluetooth.a2dp_offload.supported=true
 ro.vendor.bt.connac3=no
 ro.vendor.bt.platform=6897
 
