@@ -125,7 +125,7 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, hardware/dolby/dolby.mk)
 
 # GameBar
-$(call inherit-product, packages/apps/GameBar/gamebar.mk)
+# $(call inherit-product, packages/apps/GameBar/gamebar.mk)
 
 # Health
 PRODUCT_PACKAGES += \
