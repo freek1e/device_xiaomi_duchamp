@@ -271,13 +271,25 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/rsc,$(TARGET_COPY_OUT_VENDOR)/etc/rsc)
+    
+#optional
 
 # Radio (IMS)
 PRODUCT_BOOT_JARS += \
+    mediatek-common \
+    mediatek-framework \
+    mediatek-telephony-common \
+    mediatek-telephony-base \
+    mediatek-ims-common \
+    mediatek-ims-base \
     xiaomi-telephony-stub
 
 PRODUCT_PACKAGES += \
+    ImsService \
+    MtkGbaService \
     xiaomi-telephony-stub
+
+#optional ends
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/permissions/mediatek-common.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-common.xml \

@@ -50,3 +50,6 @@ persist.vendor.sensors.used.framebuffer  u:object_r:vendor_hal_citsensorservice_
 
 # Thermal
 vendor.sys.thermal.data.path             u:object_r:vendor_thermal_prop:s0
+
+#optional
+#persist.dbg.ims_volte_enable  u:object_r:vendor_mtk_ctl_shared_hw_prop:s0
