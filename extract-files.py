@@ -33,24 +33,14 @@ lib_fixups: lib_fixups_user_type = {
     ('libmialgo_aio_seg',
      'libmialgo_utils',
      'vendor.mediatek.hardware.apuware.utils-V1-ndk',
-     'vendor.mediatek.hardware.apuware.utils@2.0',
-     'vendor.mediatek.hardware.videotelephony-V1-ndk',): lib_fixup_vendor_suffix,
+     'vendor.mediatek.hardware.apuware.utils@2.0',): lib_fixup_vendor_suffix,
 }
 
 
 blob_fixups: blob_fixups_user_type = {
-    'system_ext/priv-app/ImsService/ImsService.apk': blob_fixup()
-        .apktool_patch('blob-patches/ImsService/'),
-
     ('system_ext/etc/init/init.vtservice.rc',
      'vendor/etc/init/android.hardware.neuralnetworks-shim-service-mtk.rc'): blob_fixup()
         .regex_replace('start', 'enable'),
-
-    'system_ext/lib64/libimsma.so': blob_fixup()
-        .replace_needed('libsink.so', 'libsink-mtk.so'),
-
-    'system_ext/lib64/libsink-mtk.so': blob_fixup()
-        .add_needed('libaudioclient_shim.so'),
 
     'odm/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl': blob_fixup()
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so')
