@@ -211,8 +211,3 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
 include vendor/xiaomi/duchamp/BoardConfigVendor.mk
-
-#optionals
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.device_config.runtime_native.usap_pool_enabled=false
