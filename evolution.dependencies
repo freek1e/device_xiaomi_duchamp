@@ -1,9 +1,5 @@
 [
   {
-    "repository": "vendor_xiaomi_duchamp",
-    "target_path": "vendor/xiaomi/duchamp"
-  },
-  {
     "repository": "hardware_dolby",
     "target_path": "hardware/dolby"
   },
@@ -26,5 +22,17 @@
   {
     "repository": "device_mediatek_sepolicy_vndr",
     "target_path": "device/mediatek/sepolicy_vndr"
+  },
+  {
+    "repository": "Evolution-X-Devices/vendor_xiaomi_duchamp",
+    "target_path": "vendor/xiaomi/duchamp",
+    "remote": "git",
+    "branch": "bka"
+  },
+  {
+    "repository": "Evolution-X-Devices/vendor_xiaomi_duchamp-miuicamera",
+    "target_path": "vendor/xiaomi/duchamp-miuicamera",
+    "remote": "git",
+    "branch": "bka"
   }
 ]
