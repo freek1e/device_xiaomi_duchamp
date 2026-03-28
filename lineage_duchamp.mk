@@ -28,3 +28,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildFingerprint=POCO/duchamp_global/duchamp:14/UP1A.230905.011/OS2.0.205.0.VNLMIXM:user/release-keys \
     DeviceProduct=$(PRODUCT_SYSTEM_NAME)
 
+# build flags
+TARGET_HAS_UDFPS := true
+TARGET_INCLUDE_VIPERFX := true
