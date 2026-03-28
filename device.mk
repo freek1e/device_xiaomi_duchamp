@@ -339,7 +339,6 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
-    hardware/mediatek/wlan/wifi_hal \
     hardware/xiaomi
 # Miui Camera
 $(call inherit-product-if-exists, device/xiaomi/duchamp-miuicamera/device.mk)
@@ -381,6 +380,7 @@ $(call soong_config_set, XIAOMI_TOUCH, HIGH_TOUCH_POLLING_PATH, /sys/devices/pla
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \
+    libwifi-hal-wrapper \
     wpa_supplicant
 
 PRODUCT_PACKAGES += \
