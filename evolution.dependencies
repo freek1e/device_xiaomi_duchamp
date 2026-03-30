@@ -34,5 +34,9 @@
     "target_path": "vendor/xiaomi/duchamp-miuicamera",
     "remote": "git",
     "branch": "bka"
+  },
+  {
+    "repository": "packages_apps_ViPER4AndroidFX",
+    "target_path": "packages/apps/ViPER4AndroidFX"
   }
 ]
