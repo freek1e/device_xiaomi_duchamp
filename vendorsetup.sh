@@ -35,10 +35,9 @@ apply_patch() {
 }
 
 apply_patch "hardware/xiaomi" "0001-TouchFeature.patch"
-apply_patch "hardware/mediatek" "0002-Power.patch"
-apply_patch "hardware/xiaomi" "0003-DisplayFeature.patch"
-apply_patch "hardware/xiaomi" "0004-UDFPS.patch"
-apply_patch "hardware/xiaomi" "0005-FP-Base.patch"
+apply_patch "hardware/xiaomi" "0002-DisplayFeature.patch"
+apply_patch "hardware/xiaomi" "0003-UDFPS.patch"
+apply_patch "hardware/xiaomi" "0004-FP-Base.patch"
 
 
 echo "Done"
