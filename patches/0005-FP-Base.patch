@@ -1,43 +1,59 @@
+From c8c218e2d113df85cc6b949f68a0eccd5774e5db Mon Sep 17 00:00:00 2001
+From: MT6897A <tomilindanya@mail.ru>
+Date: Tue, 31 Mar 2026 15:23:39 +0300
+Subject: [PATCH] duchamp: Update FP patch for latest hardware/xiaomi
+
+---
+ README.md                                     |   2 +-
+ aidl/fingerprint/Android.bp                   |   5 +-
+ aidl/fingerprint/Fingerprint.cpp              |   2 +-
+ aidl/fingerprint/Session.cpp                  |  43 ++-
+ aidl/fingerprint/Session.h                    |   9 +-
+ ...e.biometrics.fingerprint-service.xiaomi.rc |   1 -
+ fingerprint/include/UdfpsHandler.h            |   9 +-
+ fingerprint/include/fingerprint-legacy.h      | 270 ++++++++++++++++++
+ fingerprint/include/fingerprint.h             | 128 ++++++---
+ .../fingerprint/BiometricsFingerprint.cpp     |   1 -
+ .../fingerprint/BiometricsFingerprint.h       |   2 +-
+ 11 files changed, 395 insertions(+), 77 deletions(-)
+ create mode 100644 fingerprint/include/fingerprint-legacy.h
+
 diff --git a/README.md b/README.md
-index c9c09a8..e06e5aa 100644
+index 963c210..e06e5aa 100644
 --- a/README.md
 +++ b/README.md
-@@ -5,6 +5,7 @@
+@@ -5,7 +5,7 @@
  | Namespace | Variable | Description | Default |
  | --------- | -------- | ----------- | ------- |
  | XIAOMI_BIOMETRICS_FINGERPRINT | RUN_32BIT | Opt to run service in 32-bit mode only | false |
+-| XIAOMI_BIOMETRICS_FINGERPRINT | IMPL_VER | Fingerprint implementation version | V1 |
 +| XIAOMI_BIOMETRICS_FINGERPRINT | USE_NEW_IMPL | Enable updated fingerprint HAL implementation | false |
  | XIAOMI_TOUCH | HIGH_TOUCH_POLLING_PATH | HighTouchPollingRate feature control path | |
  | XIAOMI_TOUCH | KEY_DISABLER_CONTROL_PATH | KeyDisabler feature control path | |
  | XIAOMI_TOUCH | KEY_SWAPPER_CONTROL_PATH | KeySwapper feature control path | |
 diff --git a/aidl/fingerprint/Android.bp b/aidl/fingerprint/Android.bp
-index 8a5adf5..0c943f8 100644
+index 3d785ff..c693641 100644
 --- a/aidl/fingerprint/Android.bp
 +++ b/aidl/fingerprint/Android.bp
-@@ -11,8 +11,12 @@ soong_config_module_type {
+@@ -11,6 +11,7 @@ soong_config_module_type {
      config_namespace: "XIAOMI_BIOMETRICS_FINGERPRINT",
      bool_variables: [
          "RUN_32BIT",
 +        "USE_NEW_IMPL",
-+    ],
-+    properties: [
-+        "compile_multilib",
-+        "cppflags",
      ],
--    properties: ["compile_multilib"],
- }
- 
- xiaomi_hardware_biometrics_config_default {
-@@ -25,6 +29,9 @@ xiaomi_hardware_biometrics_config_default {
+     value_variables: [
+         "IMPL_VER",
+@@ -31,8 +32,8 @@ xiaomi_hardware_biometrics_config_default {
              },
              compile_multilib: "prefer32",
          },
+-        IMPL_VER: {
+-            cppflags: ["-DIMPL_%s"],
 +        USE_NEW_IMPL: {
 +            cppflags: ["-DDEVICE_USES_NEW_IMPLEMENTATION"],
-+        },
+         },
      },
  }
- 
 diff --git a/aidl/fingerprint/Fingerprint.cpp b/aidl/fingerprint/Fingerprint.cpp
 index 3df64dd..2edcf97 100644
 --- a/aidl/fingerprint/Fingerprint.cpp
@@ -52,214 +68,228 @@ index 3df64dd..2edcf97 100644
  
  }  // namespace
 diff --git a/aidl/fingerprint/Session.cpp b/aidl/fingerprint/Session.cpp
-index 9126ec7..30aa9e0 100644
+index b935731..bb25813 100644
 --- a/aidl/fingerprint/Session.cpp
 +++ b/aidl/fingerprint/Session.cpp
-@@ -35,17 +35,26 @@ Session::Session(fingerprint_device_t* device, UdfpsHandler* udfpsHandler, int u
+@@ -35,7 +35,7 @@ Session::Session(fingerprint_device_t* device, UdfpsHandler* udfpsHandler, int u
  }
  
  ndk::ScopedAStatus Session::generateChallenge() {
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      uint64_t challenge = mDevice->pre_enroll(mDevice);
--    ALOGI("generateChallenge: %ld", challenge);
      mCb->onChallengeGenerated(challenge);
-+#else
-+    uint64_t challenge = mDevice->generate_challenge(mDevice);
-+#endif
-+    ALOGI("generateChallenge: %ld", challenge);
- 
-     return ndk::ScopedAStatus::ok();
- }
- 
+ #else
+@@ -49,7 +49,7 @@ ndk::ScopedAStatus Session::generateChallenge() {
  ndk::ScopedAStatus Session::revokeChallenge(int64_t challenge) {
      ALOGI("revokeChallenge: %ld", challenge);
-+
+ 
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      mDevice->post_enroll(mDevice);
      mCb->onChallengeRevoked(challenge);
-+#else
-+    mDevice->revoke_challenge(mDevice, challenge);
-+#endif
- 
-     return ndk::ScopedAStatus::ok();
- }
-@@ -54,7 +63,11 @@ ndk::ScopedAStatus Session::enroll(const HardwareAuthToken& hat,
+ #else
+@@ -63,7 +63,7 @@ ndk::ScopedAStatus Session::enroll(const HardwareAuthToken& hat,
                                     std::shared_ptr<ICancellationSignal>* out) {
      hw_auth_token_t authToken;
      translate(hat, authToken);
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      int error = mDevice->enroll(mDevice, &authToken, mUserId, 60);
-+#else
-+    int error = mDevice->enroll(mDevice, &authToken);
-+#endif
-     if (error) {
-         ALOGE("enroll failed: %d", error);
-         mCb->onError(Error::UNABLE_TO_PROCESS, error);
-@@ -67,7 +80,11 @@ ndk::ScopedAStatus Session::enroll(const HardwareAuthToken& hat,
+ #else
+     int error = mDevice->enroll(mDevice, &authToken);
+@@ -80,7 +80,7 @@ ndk::ScopedAStatus Session::enroll(const HardwareAuthToken& hat,
  ndk::ScopedAStatus Session::authenticate(int64_t operationId,
                                           std::shared_ptr<ICancellationSignal>* out) {
      checkSensorLockout();
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      int error = mDevice->authenticate(mDevice, operationId, mUserId);
-+#else
-+    int error = mDevice->authenticate(mDevice, operationId);
-+#endif
-     if (error) {
-         ALOGE("authenticate failed: %d", error);
-         mCb->onError(Error::UNABLE_TO_PROCESS, error);
-@@ -97,30 +114,54 @@ ndk::ScopedAStatus Session::enumerateEnrollments() {
+ #else
+     int error = mDevice->authenticate(mDevice, operationId);
+@@ -114,7 +114,7 @@ ndk::ScopedAStatus Session::enumerateEnrollments() {
  ndk::ScopedAStatus Session::removeEnrollments(const std::vector<int32_t>& enrollmentIds) {
      ALOGI("removeEnrollments, size: %zu", enrollmentIds.size());
  
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      for (int32_t fid : enrollmentIds) {
          int error = mDevice->remove(mDevice, mUserId, fid);
          if (error) {
-             ALOGE("remove failed: %d", error);
-         }
-     }
-+#else
-+    std::vector<uint32_t> fids(enrollmentIds.begin(), enrollmentIds.end());
-+    int error = mDevice->remove(mDevice, fids.data(), static_cast<uint32_t>(fids.size()));
-+    if (error) {
-+        ALOGE("Failed to remove enrollments: %d", error);
-+    }
-+#endif
-     return ndk::ScopedAStatus::ok();
- }
- 
+@@ -134,14 +134,14 @@ ndk::ScopedAStatus Session::removeEnrollments(const std::vector<int32_t>& enroll
  ndk::ScopedAStatus Session::getAuthenticatorId() {
      uint64_t auth_id = mDevice->get_authenticator_id(mDevice);
      ALOGI("getAuthenticatorId: %ld", auth_id);
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      mCb->onAuthenticatorIdRetrieved(auth_id);
-+#endif
+ #endif
      return ndk::ScopedAStatus::ok();
  }
  
  ndk::ScopedAStatus Session::invalidateAuthenticatorId() {
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
      uint64_t auth_id = mDevice->get_authenticator_id(mDevice);
--    ALOGI("invalidateAuthenticatorId: %ld", auth_id);
      mCb->onAuthenticatorIdInvalidated(auth_id);
-+#else
-+    uint64_t auth_id = mDevice->invalidate_authenticator_id(mDevice);
-+#endif
-+    ALOGI("invalidateAuthenticatorId: %ld", auth_id);
-     return ndk::ScopedAStatus::ok();
+ #else
+@@ -152,7 +152,7 @@ ndk::ScopedAStatus Session::invalidateAuthenticatorId() {
  }
  
--ndk::ScopedAStatus Session::resetLockout(const HardwareAuthToken& /*hat*/) {
-+ndk::ScopedAStatus Session::resetLockout(const HardwareAuthToken& hat) {
+ ndk::ScopedAStatus Session::resetLockout(const HardwareAuthToken& hat) {
+-#ifdef IMPL_V2
 +#ifdef DEVICE_USES_NEW_IMPLEMENTATION
-+    hw_auth_token_t authToken;
-+    translate(hat, authToken);
-+
-+    int resetResult = mDevice->reset_lockout(mDevice, &authToken);
-+    if (resetResult != 0) {
-+        ALOGE("Failed to reset lockout: %d", resetResult);
-+    }
-+#endif
-+
-     clearLockout(true);
-     if (mIsLockoutTimerStarted) mIsLockoutTimerAborted = true;
+     hw_auth_token_t authToken;
+     translate(hat, authToken);
  
-@@ -344,21 +385,36 @@ void Session::notify(const fingerprint_msg_t* msg) {
+@@ -258,8 +258,6 @@ bool Session::isClosed() {
+     return mClosed;
+ }
+ 
+-// Translate from errors returned by traditional HAL (see fingerprint.h) to
+-// AIDL-compliant Error
+ Error Session::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
+     *vendorCode = 0;
+ 
+@@ -282,7 +280,6 @@ Error Session::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
+         }
+         default:
+             if (error >= FINGERPRINT_ERROR_VENDOR_BASE) {
+-                // vendor specific code.
+                 *vendorCode = error - FINGERPRINT_ERROR_VENDOR_BASE;
+                 return Error::VENDOR;
+             }
+@@ -291,8 +288,6 @@ Error Session::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
+     return Error::UNABLE_TO_PROCESS;
+ }
+ 
+-// Translate acquired messages returned by traditional HAL (see fingerprint.h)
+-// to AIDL-compliant AcquiredInfo
+ AcquiredInfo Session::VendorAcquiredFilter(int32_t info, int32_t* vendorCode) {
+     *vendorCode = 0;
+ 
+@@ -311,7 +306,6 @@ AcquiredInfo Session::VendorAcquiredFilter(int32_t info, int32_t* vendorCode) {
+             return AcquiredInfo::TOO_FAST;
+         default:
+             if (info >= FINGERPRINT_ACQUIRED_VENDOR_BASE) {
+-                // vendor specific code.
+                 *vendorCode = info - FINGERPRINT_ACQUIRED_VENDOR_BASE;
+                 return AcquiredInfo::VENDOR;
+             }
+@@ -361,7 +355,6 @@ void Session::lockoutTimerExpired() {
+ }
+ 
+ void Session::notify(const fingerprint_msg_t* msg) {
+-    // const uint64_t devId = reinterpret_cast<uint64_t>(mDevice);
+     switch (msg->type) {
+         case FINGERPRINT_ERROR: {
+             int32_t vendorCode = 0;
+@@ -377,15 +370,12 @@ void Session::notify(const fingerprint_msg_t* msg) {
+             if (mUdfpsHandler) {
+                 mUdfpsHandler->onAcquired(static_cast<int32_t>(result), vendorCode);
+             }
+-            // don't process vendor messages further since frameworks try to disable
+-            // udfps display mode on vendor acquired messages but our sensors send a
+-            // vendor message during processing...
+             if (result != AcquiredInfo::VENDOR) {
+                 mCb->onAcquired(result, vendorCode);
              }
          } break;
          case FINGERPRINT_TEMPLATE_ENROLLING: {
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
              ALOGD("onEnrollResult(fid=%d, gid=%d, rem=%d)", msg->data.enroll.finger.fid,
                    msg->data.enroll.finger.gid, msg->data.enroll.samples_remaining);
-+#else
-+            ALOGD("onEnrollResult(fid=%d, rem=%d)", msg->data.enroll.finger.fid,
-+                  msg->data.enroll.samples_remaining);
-+#endif
+ #else
+@@ -394,16 +384,17 @@ void Session::notify(const fingerprint_msg_t* msg) {
+ #endif
              mCb->onEnrollmentProgress(msg->data.enroll.finger.fid,
                                        msg->data.enroll.samples_remaining);
-+
+-
          } break;
          case FINGERPRINT_TEMPLATE_REMOVED: {
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
              ALOGD("onRemove(fid=%d, gid=%d, rem=%d)", msg->data.removed.finger.fid,
                    msg->data.removed.finger.gid, msg->data.removed.remaining_templates);
-+#else
-+            ALOGD("onRemove(fid=%d, rem=%d)", msg->data.removed.finger.fid,
-+                  msg->data.removed.remaining_templates);
-+#endif
              std::vector<int> enrollments;
              enrollments.push_back(msg->data.removed.finger.fid);
              mCb->onEnrollmentsRemoved(enrollments);
+ #else
++            ALOGD("onRemove(fid=%d, rem=%d)", msg->data.removed.finger.fid,
++                  msg->data.removed.remaining_templates);
+             std::vector<int32_t> enrollments;
+             enrollments.reserve(NUM_FINGERS);
+             for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+@@ -416,7 +407,7 @@ void Session::notify(const fingerprint_msg_t* msg) {
+ #endif
          } break;
          case FINGERPRINT_AUTHENTICATED: {
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
              ALOGD("onAuthenticated(fid=%d, gid=%d)", msg->data.authenticated.finger.fid,
                    msg->data.authenticated.finger.gid);
-+#else
-+            ALOGD("onAuthenticated(fid=%d)", msg->data.authenticated.finger.fid);
-+#endif
-             if (msg->data.authenticated.finger.fid != 0) {
-                 const hw_auth_token_t hat = msg->data.authenticated.hat;
-                 HardwareAuthToken authToken;
-@@ -379,8 +435,13 @@ void Session::notify(const fingerprint_msg_t* msg) {
+ #else
+@@ -442,7 +433,7 @@ void Session::notify(const fingerprint_msg_t* msg) {
              }
          } break;
          case FINGERPRINT_TEMPLATE_ENUMERATING: {
+-#ifndef IMPL_V2
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
              ALOGD("onEnumerate(fid=%d, gid=%d, rem=%d)", msg->data.enumerated.finger.fid,
                    msg->data.enumerated.finger.gid, msg->data.enumerated.remaining_templates);
-+#else
-+            ALOGD("onEnumerate(fid=%d, rem=%d)", msg->data.enumerated.finger.fid,
-+                  msg->data.enumerated.remaining_templates);
-+#endif
              static std::vector<int> enrollments;
-             enrollments.push_back(msg->data.enumerated.finger.fid);
-             if (msg->data.enumerated.remaining_templates == 0) {
-@@ -388,6 +449,28 @@ void Session::notify(const fingerprint_msg_t* msg) {
+@@ -452,6 +443,8 @@ void Session::notify(const fingerprint_msg_t* msg) {
                  enrollments.clear();
              }
+ #else
++            ALOGD("onEnumerate(fid=%d, rem=%d)", msg->data.enumerated.finger.fid,
++                  msg->data.enumerated.remaining_templates);
+             std::vector<int32_t> enrollments;
+             enrollments.reserve(NUM_FINGERS);
+             for (unsigned int i = 0; i < NUM_FINGERS; i++) {
+@@ -463,7 +456,7 @@ void Session::notify(const fingerprint_msg_t* msg) {
+             mCb->onEnrollmentsEnumerated(enrollments);
+ #endif
          } break;
+-#ifdef IMPL_V2
 +#ifdef DEVICE_USES_NEW_IMPLEMENTATION
-+        case FINGERPRINT_CHALLENGE_GENERATED: {
-+            ALOGD("onChallengeGenerated(%lu)", msg->data.challenge.value);
-+            mCb->onChallengeGenerated(msg->data.challenge.value);
-+        } break;
-+        case FINGERPRINT_CHALLENGE_REVOKED: {
-+            ALOGD("onChallengeRevoked(%lu)", msg->data.challenge.value);
-+            mCb->onChallengeRevoked(msg->data.challenge.value);
-+        } break;
-+        case FINGERPRINT_AUTHENTICATOR_ID_RETRIEVED: {
-+            ALOGD("onAuthenticatorIdRetrieved(%lu)", msg->data.authenticator.id);
-+            mCb->onAuthenticatorIdRetrieved(msg->data.authenticator.id);
-+        } break;
-+        case FINGERPRINT_AUTHENTICATOR_ID_INVALIDATED: {
-+            ALOGD("onAuthenticatorIdInvalidated(%lu)", msg->data.authenticator.id);
-+            mCb->onAuthenticatorIdInvalidated(msg->data.authenticator.id);
-+        } break;
-+        case FINGERPRINT_RESET_LOCKOUT: {
-+            ALOGD("onLockoutCleared");
-+            clearLockout(true);
-+        } break;
-+#endif
+         case FINGERPRINT_CHALLENGE_GENERATED: {
+             ALOGD("onChallengeGenerated(%lu)", msg->data.challenge.value);
+             mCb->onChallengeGenerated(msg->data.challenge.value);
+@@ -488,4 +481,4 @@ void Session::notify(const fingerprint_msg_t* msg) {
      }
  }
  
+-}  // namespace aidl::android::hardware::biometrics::fingerprint
++}  // namespace aidl::android::hardware::biometrics::fingerprint
+\ No newline at end of file
 diff --git a/aidl/fingerprint/Session.h b/aidl/fingerprint/Session.h
-index 1a3ef2b..26bbfa5 100644
+index 025abe6..87a1591 100644
 --- a/aidl/fingerprint/Session.h
 +++ b/aidl/fingerprint/Session.h
-@@ -12,7 +12,11 @@
+@@ -12,10 +12,11 @@
  #include <android/log.h>
  #include <hardware/hardware.h>
  #include <log/log.h>
+-#ifndef IMPL_V2
+-#include "fingerprint.h"
++
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
 +#include "fingerprint-legacy.h"
-+#else
- #include "fingerprint.h"
-+#endif
+ #else
+-#include "fingerprint-v2.h"
++#include "fingerprint.h"
+ #endif
  
  #include "LockoutTracker.h"
- #include "UdfpsHandler.h"
+@@ -101,4 +102,4 @@ class Session : public BnSession {
+     UdfpsHandler* mUdfpsHandler;
+ };
+ 
+-}  // namespace aidl::android::hardware::biometrics::fingerprint
++}  // namespace aidl::android::hardware::biometrics::fingerprint
+\ No newline at end of file
 diff --git a/aidl/fingerprint/android.hardware.biometrics.fingerprint-service.xiaomi.rc b/aidl/fingerprint/android.hardware.biometrics.fingerprint-service.xiaomi.rc
 index 9ac0274..89d1c3e 100644
 --- a/aidl/fingerprint/android.hardware.biometrics.fingerprint-service.xiaomi.rc
@@ -269,34 +299,32 @@ index 9ac0274..89d1c3e 100644
      capabilities SYS_NICE
      shutdown critical
 -    task_profiles ProcessCapacityHigh MaxPerformance
-diff --git a/fingerprint/Android.bp b/fingerprint/Android.bp
-index 6a8a858..bd821c4 100644
---- a/fingerprint/Android.bp
-+++ b/fingerprint/Android.bp
-@@ -9,6 +9,7 @@ cc_library_static {
-     srcs: ["UdfpsHandler.cpp"],
-     vendor: true,
-     header_libs: ["xiaomifingerprint_headers"],
-+    defaults: ["xiaomi_hardware_biometrics_config_default"],
- }
- 
- cc_library_headers {
 diff --git a/fingerprint/include/UdfpsHandler.h b/fingerprint/include/UdfpsHandler.h
-index 23a86d1..eead8bd 100644
+index 78f2368..79ac5a2 100644
 --- a/fingerprint/include/UdfpsHandler.h
 +++ b/fingerprint/include/UdfpsHandler.h
-@@ -7,7 +7,11 @@
+@@ -7,10 +7,11 @@
  #pragma once
  
  #include <stdint.h>
+-#ifndef IMPL_V2
+-#include "fingerprint.h"
++
 +#ifndef DEVICE_USES_NEW_IMPLEMENTATION
 +#include "fingerprint-legacy.h"
-+#else
- #include "fingerprint.h"
-+#endif
+ #else
+-#include "fingerprint-v2.h"
++#include "fingerprint.h"
+ #endif
  
  class UdfpsHandler {
-   public:
+@@ -32,4 +33,4 @@ struct UdfpsHandlerFactory {
+     void (*destroy)(UdfpsHandler* handler);
+ };
+ 
+-UdfpsHandlerFactory* getUdfpsHandlerFactory();
++UdfpsHandlerFactory* getUdfpsHandlerFactory();
+\ No newline at end of file
 diff --git a/fingerprint/include/fingerprint-legacy.h b/fingerprint/include/fingerprint-legacy.h
 new file mode 100644
 index 0000000..f95be81
@@ -804,3 +832,6 @@ index bd822f0..d85114a 100644
  
  namespace android {
  namespace hardware {
+-- 
+2.53.0
+
