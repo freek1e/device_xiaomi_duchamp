@@ -1,4 +1,5 @@
 # Unpinned blobs from duchamp_global-user 15 AP3A.240905.015.A2 OS2.0.209.0.VNLMIXM release-keys
+# duchamp: duchamp_global-user 14 UP1A.230905.011 V816.0.2.0.UNLMIXM release-keys
 
 # AEE
 vendor/lib64/libaedv.so
@@ -38,6 +39,7 @@ vendor/lib64/libcvsd_mtk.so
 vendor/lib64/libfvaudio.so
 vendor/lib64/libladder.so
 vendor/lib64/libmbrainSDKv.so
+vendor/lib64/libmisound.so
 vendor/lib64/libmisoundcrossfade.so;FIX_SONAME
 vendor/lib64/libmisoundfpsop.so
 vendor/lib64/libmispowerop.so
@@ -66,6 +68,7 @@ vendor/lib64/vendor.mediatek.hardware.mbrain-V1-ndk.so
 
 # Audio Configs
 vendor/etc/audio_device.xml
+vendor/etc/aurisys_config.xml
 vendor/etc/aurisys_config_hifi3.xml
 vendor/etc/aurisys_config_rv.xml
 vendor/etc/usb_audio_accessory_only_policy_configuration.xml
@@ -193,6 +196,8 @@ vendor/etc/audio_param/VolumeGainMap_ParamUnitDesc.xml
 vendor/etc/audio_param/Volume_AudioParam.xml
 vendor/etc/audio_param/Volume_ParamUnitDesc.xml
 vendor/etc/audiodata.db
+vendor/etc/misound_res_headphone.bin
+vendor/etc/misound_res_spk.bin
 
 # Batterysecret
 vendor/bin/batterysecret
@@ -213,13 +218,6 @@ vendor/lib64/libbluetooth_audio_session_aidl_mtk.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio@2.1.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio@2.2.so
-vendor/etc/bluetooth_a2dp_offload_ums_offload_audio_policy_configuration.xml
-vendor/etc/bluetooth_audio_policy_configuration.xml
-vendor/etc/bluetooth_offload_audio_policy_configuration.xml
-vendor/etc/bluetooth_ums_offload_audio_policy_configuration.xml
-vendor/etc/usb_audio_policy_configuration.xml
-vendor/etc/a2dp_audio_policy_configuration.xml
-vendor/etc/a2dp_in_audio_policy_configuration.xml
 
 # Camera
 odm/bin/crossbuild/DataSet/SQLiteModule/db/ae/mt6897/ParameterDB_ae.db;SYMLINK=odm/bin/crossbuild/DataSet/SQLiteModule/db/ae/ParameterDB_ae.db;MAKE_COPY_RULE_ONLY
@@ -368,8 +366,8 @@ vendor/lib64/libhis_motion_tracker.so
 vendor/lib64/libimagebuffer_wrapper.so
 vendor/lib64/libjpeg-alpha-oal_vendor.so
 vendor/lib64/libjpeg-alpha_vendor.so
-vendor/lib64/libjpegdecoder.so;MODULE_SUFFIX=-vendor
-vendor/lib64/libjpegencoder.so;MODULE_SUFFIX=-vendor
+vendor/lib64/libjpegdecoder.so:vendor/lib64/libjpegdecoder-v34.so;FIX_SONAME
+vendor/lib64/libjpegencoder.so:vendor/lib64/libjpegencoder-v34.so;FIX_SONAME
 vendor/lib64/libmiSAT.so
 vendor/lib64/libmiSATTranslate.so
 vendor/lib64/libmialgo_ai_vision.so
@@ -402,9 +400,8 @@ vendor/lib64/libmvpu_wrapper.so
 vendor/lib64/libn3d_tuning.so
 vendor/lib64/librelight_only.so
 vendor/lib64/libremosaic_wrapper.so
-vendor/lib64/libultrahdr.so:vendor/lib64/libultrahdr-v34.so;FIX_SONAME
 vendor/lib64/librfs_warp.so
-vendor/lib64/libultrahdr.so;MODULE_SUFFIX=-vendor
+vendor/lib64/libultrahdr.so:vendor/lib64/libultrahdr-v34.so;FIX_SONAME
 vendor/lib64/libvideoBokeh.so
 vendor/lib64/mt6897/duchampgc16b3front_mipi_raw_IdxMgr.so;SYMLINK=vendor/lib64/duchampgc16b3front_mipi_raw_IdxMgr.so
 vendor/lib64/mt6897/duchampgc16b3front_mipi_raw_tuning.so;SYMLINK=vendor/lib64/duchampgc16b3front_mipi_raw_tuning.so
@@ -1332,9 +1329,6 @@ vendor/etc/init/fuelgauged_init.rc
 vendor/etc/init/fuelgauged_nvram_init.rc
 vendor/lib64/libfgauge_gm30.so
 
-# Game
-vendor/priv-app/GpuGameDriver.mt6897/GpuGameDriver.mt6897.apk
-
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper-service.mitee
 vendor/etc/init/android.hardware.gatekeeper-service.mitee.rc
@@ -1410,6 +1404,7 @@ odm/lib64/libmlipay_mitee.so
 vendor/lib64/vendor.xiaomi.hardware.mlipay-V1-ndk.so
 
 # Media (C2)
+system/lib64/libstagefright_bufferqueue_helper.so:vendor/lib64/libstagefright_bufferqueue_helper-v35.so;FIX_SONAME
 vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b
 vendor/etc/init/android.hardware.media.c2@1.2-mediatek-64b.rc
 vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-extended-seccomp-policy
@@ -1484,7 +1479,7 @@ system_ext/lib64/libmvpuop25_mtk_nn.mtk.so
 system_ext/lib64/libmvpuop_mtk_cv.mtk.so
 system_ext/lib64/libmvpuop_mtk_nn.mtk.so
 system_ext/lib64/libneuron_graph_delegate.mtk.so
-system_ext/lib64/libneuronusdk_adapter.mtk.so
+system_ext/lib64/libneuronusdk_adapter.mtk.so;FIX_SONAME
 system_ext/lib64/libnir_neon_driver_ndk.mtk.so
 system_ext/lib64/libtflite_mtk.mtk.so
 system_ext/lib64/libtflite_mtk.so
@@ -1660,9 +1655,11 @@ vendor/lib64/vendor.mediatek.hardware.mtkradioex.voice-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.netdagent-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.netdagent@1.0.so
 
-# Radio (Engineer Mode)
+# Radio (Engineer Mode) - from duchamp
 system_ext/app/EngineerMode/EngineerMode.apk
 system_ext/lib64/libem_support_jni.so
+
+# Radio (Engineer Mode)
 vendor/bin/em_hidl
 vendor/etc/init/em_hal_user.rc
 vendor/etc/vintf/manifest/em_hal_service.xml

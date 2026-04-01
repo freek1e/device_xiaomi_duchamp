@@ -30,11 +30,8 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
-    ('libjpegdecoder',
-     'libjpegencoder',
-     'libmialgo_aio_seg',
+    ('libmialgo_aio_seg',
      'libmialgo_utils',
-     'libultrahdr',
      'vendor.mediatek.hardware.apuware.utils-V1-ndk',
      'vendor.mediatek.hardware.apuware.utils@2.0',
      'vendor.mediatek.hardware.videotelephony-V1-ndk',): lib_fixup_vendor_suffix,
@@ -119,8 +116,8 @@ blob_fixups: blob_fixups_user_type = {
 
     'vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml': blob_fixup()
         .regex_replace('.+dolby.+\n', ''),
- 
-   'vendor/lib64/mt6897/libmtkcam_hwnode.jpegnode.so': blob_fixup()
+
+    'vendor/lib64/mt6897/libmtkcam_hwnode.jpegnode.so': blob_fixup()
         .replace_needed('libultrahdr.so', 'libultrahdr-v34.so'),
 
     'vendor/lib64/libultrahdr-v34.so': blob_fixup()
@@ -133,20 +130,29 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libcodec2_hidl@1.2.so', 'libcodec2_hidl@1.2-v34.so')
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so'),
 
+    'vendor/lib64/libcodec2_fsr.so': blob_fixup()
+        .replace_needed('libui.so', 'libui-v34.so'),
+
     'vendor/lib64/libcodec2_hidl@1.0-v34.so': blob_fixup()
+        .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-v35.so')
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v34.so')
-        .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so'),
+        .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so')
+        .replace_needed('libui.so', 'libui-v34.so'),
 
     'vendor/lib64/libcodec2_hidl@1.1-v34.so': blob_fixup()
+        .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-v35.so')
         .replace_needed('libcodec2_hidl@1.0.so', 'libcodec2_hidl@1.0-v34.so')
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v34.so')
-        .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so'),
+        .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so')
+        .replace_needed('libui.so', 'libui-v34.so'),
 
     'vendor/lib64/libcodec2_hidl@1.2-v34.so': blob_fixup()
+        .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-v35.so')
         .replace_needed('libcodec2_hidl@1.0.so', 'libcodec2_hidl@1.0-v34.so')
         .replace_needed('libcodec2_hidl@1.1.so', 'libcodec2_hidl@1.1-v34.so')
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v34.so')
-        .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so'),
+        .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so')
+        .replace_needed('libui.so', 'libui-v34.so'),
 
     ('vendor/lib64/libcodec2_hidl_plugin-v34.so',
      'vendor/lib64/libsfplugin_ccodec_utils-v34.so'): blob_fixup()
@@ -161,11 +167,13 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/libcodec2_vpp_rs_plugin.so'): blob_fixup()
         .replace_needed('libcodec2_soft_common.so', 'libcodec2_soft_common-v34.so')
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so')
-        .replace_needed('libsfplugin_ccodec_utils.so', 'libsfplugin_ccodec_utils-v34.so'),
+        .replace_needed('libsfplugin_ccodec_utils.so', 'libsfplugin_ccodec_utils-v34.so')
+        .replace_needed('libui.so', 'libui-v34.so'),
 
     'vendor/lib64/libcodec2_soft_common-v34.so': blob_fixup()
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so')
-        .replace_needed('libsfplugin_ccodec_utils.so', 'libsfplugin_ccodec_utils-v34.so'),
+        .replace_needed('libsfplugin_ccodec_utils.so', 'libsfplugin_ccodec_utils-v34.so')
+        .replace_needed('libui.so', 'libui-v34.so'),
 
     ('vendor/lib64/libcodec2_vpp_AIMEMC_plugin.so',
      'vendor/lib64/libcodec2_vpp_AISR_plugin.so'): blob_fixup()
@@ -175,9 +183,10 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libsfplugin_ccodec_utils.so', 'libsfplugin_ccodec_utils-v34.so'),
 
     'vendor/lib64/libcodec2_vndk-v34.so': blob_fixup()
+        .replace_needed('libui.so', 'libui-v34.so')
         .replace_needed('android.hardware.media.bufferpool2-V1-ndk.so', 'android.hardware.media.bufferpool2-V2-ndk.so'),
 
-     ('odm/lib64/hw/displayfeature.default.so',
+    ('odm/lib64/hw/displayfeature.default.so',
      'vendor/lib64/hw/mt6897/vendor.mediatek.hardware.pq_aidl-impl.so',
      'vendor/lib64/libaudiocloudctrl.so',
      'vendor/lib64/libpqxmlflagparser.so',
@@ -187,7 +196,7 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/mt6897/libmmlpqImpl.so'): blob_fixup()
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
 
-     'vendor/lib64/hw/android.hardware.soundtrigger3-impl.so': blob_fixup()
+    'vendor/lib64/hw/android.hardware.soundtrigger3-impl.so': blob_fixup()
         .replace_needed('android.hardware.soundtrigger3-V1-ndk.so', 'android.hardware.soundtrigger3-V3-ndk.so'),
 
     ('vendor/lib64/android.hardware.bluetooth.audio-impl-mediatek.so',
