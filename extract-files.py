@@ -50,7 +50,7 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libsink.so', 'libsink-mtk.so'),
 
     'system_ext/lib64/libsink-mtk.so': blob_fixup()
-        .add_needed('libaudioclient_mt6897_shim.so'),
+        .add_needed('libaudioclient_shim.so'),
 
     'odm/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl': blob_fixup()
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so')
