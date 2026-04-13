@@ -17,3 +17,21 @@ binder_call(system_app, vendor_hal_displayfeature)
 
 # Thermal
 rw_dir_file(system_app, sysfs_therm)
+
+# Gamebar V4 
+allow system_app sysfs_therm:dir search;
+allow system_app sysfs_therm:file r_file_perms;
+
+# CPU stats
+allow system_app proc_stat:file r_file_perms;
+
+allow system_app sysfs_gpu:dir search;
+allow system_app sysfs_gpu:file r_file_perms;
+
+# GPU
+allow system_app sysfs_gpu:dir search;
+allow system_app sysfs_gpu:file r_file_perms;
+
+# Battery
+allow system_app sysfs_power_supply:dir search;
+allow system_app sysfs_power_supply:file r_file_perms;
