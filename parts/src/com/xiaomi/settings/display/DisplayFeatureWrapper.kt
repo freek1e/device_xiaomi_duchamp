@@ -23,7 +23,7 @@ object DisplayFeatureWrapper {
         }
 
     @Synchronized
-    private fun getDisplayFeature(): IDisplayFeature? {
+private fun getDisplayFeature(): IDisplayFeature? {
         displayFeature?.let {
             if (it.asBinder().isBinderAlive) return it
         }

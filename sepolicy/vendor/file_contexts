@@ -120,3 +120,7 @@
 # Touch Sampling
 /sys/devices/platform/goodix_ts.0/goodix_ts_report_rate                      u:object_r:vendor_sysfs_htsr:s0
 /vendor/bin/hw/vendor\.lineage\.touch-service\.xiaomi                        u:object_r:hal_lineage_touch_default_exec:s0
+
+# GameBar
+/proc/stat                                                                                                                                                u:object_r:proc_stat:s0
+/sys/class/devfreq/13000000\.mali(/.*)?                                                                u:object_r:sysfs_gpu:s0
