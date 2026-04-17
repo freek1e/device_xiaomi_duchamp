@@ -373,6 +373,12 @@ PRODUCT_PACKAGES += \
 # Vibrator
 $(call inherit-product, vendor/qcom/opensource/vibrator/vibrator-vendor-product.mk)
 
+# Touch
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch-service.xiaomi
+
+$(call soong_config_set, XIAOMI_TOUCH, HIGH_TOUCH_POLLING_PATH, /sys/devices/platform/goodix_ts.0/goodix_ts_report_rate)
+
 # Wi-Fi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \

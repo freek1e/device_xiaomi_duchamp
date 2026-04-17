@@ -118,4 +118,5 @@
 /sys/devices/system/cpu/cpu[0-7]/online					       u:object_r:vendor_sysfs_corecontrol:s0
 
 # Touch Sampling
-/sys/devices/platform/goodix_ts.0/goodix_ts_report_rate                                                u:object_r:vendor_sysfs_htsr:s0                     u:object_r:hal_touchfeature_xiaomi_default_exec:s0
+/sys/devices/platform/goodix_ts.0/goodix_ts_report_rate                      u:object_r:vendor_sysfs_htsr:s0
+/vendor/bin/hw/vendor\.lineage\.touch-service\.xiaomi                        u:object_r:hal_lineage_touch_default_exec:s0

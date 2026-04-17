@@ -314,7 +314,9 @@ on boot
     # Touch feature
     chown system system /dev/xiaomi-touch
     chmod 0660 /dev/xiaomi-touch
-
+    chown system system /sys/devices/platform/goodix_ts.0/goodix_ts_report_rate
+    chmod 0660 /sys/devices/platform/goodix_ts.0/goodix_ts_report_rate
+    
     # Core Control
     chown system system /sys/devices/system/cpu/cpu0/online
     chown system system /sys/devices/system/cpu/cpu1/online

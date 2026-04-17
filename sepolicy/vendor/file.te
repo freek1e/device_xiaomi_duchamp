@@ -33,3 +33,4 @@ type vendor_sysfs_corecontrol, fs_type, sysfs_type;
 
 #HTSR
 type vendor_sysfs_htsr, sysfs_type, fs_type;
+type vendor_sysfs_touch, sysfs_type, fs_type;
