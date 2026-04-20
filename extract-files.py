@@ -36,9 +36,7 @@ def lib_fixup_system_ext_suffix(lib: str, partition: str, *args, **kwargs):
 
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
-    ('libmialgo_aio_seg',
-     'libmialgo_utils',
-     'vendor.mediatek.hardware.apuware.utils-V1-ndk',
+    ('vendor.mediatek.hardware.apuware.utils-V1-ndk',
      'vendor.mediatek.hardware.apuware.utils@2.0',
      'vendor.mediatek.hardware.videotelephony-V1-ndk',): lib_fixup_vendor_suffix,
     ('vendor.mediatek.hardware.camera.isphal@1.0',
