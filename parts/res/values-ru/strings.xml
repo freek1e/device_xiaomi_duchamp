@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+
+    <!-- Xiaomi Parts -->
+    <string name="app_name">Xiaomi Parts</string>
+
+    <!-- Thermal Profile -->
+    <string name="thermalprofile_title">Термопрофиль</string>
+    <string name="thermalprofile_default">Баланс</string>
+    <string name="thermalprofile_performance">Производительность</string>
+    <string name="thermalprofile_battery">Экономия</string>
+    <string name="thermalprofile_game">Игры</string>
+    <string name="thermalprofile_unknown">Неизвестно</string>
+
+    <!-- Charge Speed Limit -->
+    <string name="turbo_charge_title">Лимит скорости зарядки</string>
+    <string name="turbo_enable_title">Включить лимит скорости зарядки</string>
+    <string name="turbo_charge_summary">Включите лимит скорости зарядки для различных режимов зарядки мощностью до 67 Вт.</string>
+    <string name="turbo_charge_current_pref_title">Скорость зарядки</string>
+    <string name="turbo_mode_one">18Вт</string>
+    <string name="turbo_mode_two">30Вт</string>
+    <string name="turbo_mode_three">67Вт</string>
+    <string name="turbo_charge_tile_label">Лимит скорости зарядки</string>
+    <string name="turbo_charge_tile_content_description">Переключить лимит скорости зарядки</string>
+
+    <!-- Core Control -->
+    <string name="core_control_title">Управление ядрами</string>
+    <string name="core_control_summary">Ручное управление состоянием каждого ядра процессора</string>
+    <string name="core_control_description">Расширенное управление процессором. Выключение ядер может сэкономить заряд или снизить температуру, но может оказать эффект на быстродействие и стабильность.\n\nКак минимум 2 ядра должны оставаться включенными.</string>
+    <string name="core_0">Ядро 0 (Малое)</string>
+    <string name="core_1">Ядро 1 (Малое)</string>
+    <string name="core_2">Ядро 2 (Малое)</string>
+    <string name="core_3">Ядро 3 (Малое)</string>
+    <string name="core_4">Ядро 4 (Большое)</string>
+    <string name="core_5">Ядро 5 (Большое)</string>
+    <string name="core_6">Ядро 6 (Большое)</string>
+    <string name="core_7">Ядро 7 (Главное)</string>
+    
+</resources>
