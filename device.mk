@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
+# Adapted for The Clover Project (Unofficial)
+#
 
 DEVICE_PATH := device/xiaomi/duchamp
 
