@@ -1,4 +1,16 @@
 SPDX-FileCopyrightText: The LineageOS Project
+SPDX-License-Identifier: Apache-2.0
+
+---
+
+### 📦 Downloads
+👉 [Download latest build](https://sourceforge.net/projects/clover-project-duchamp/)
+
+### ⚡ Notes
+- Unofficial build
+- Use at your own risk
+
+---
 
 Device configuration for Poco X6 Pro 5G/Redmi K70E
 =============================================================
