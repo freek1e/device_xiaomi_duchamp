@@ -16,6 +16,8 @@ $(call inherit-product, device/xiaomi/duchamp/device.mk)
 $(call inherit-product, vendor/clover/config/common_full_phone.mk)
 
 # Clover Customization Flags
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+USE_PIXEL_CHARGER := true
 TARGET_ENABLE_BLUR := true
 TARGET_INCLUDE_PIXEL_LAUNCHER := true
 TARGET_BOOT_ANIMATION_RES := 1080
