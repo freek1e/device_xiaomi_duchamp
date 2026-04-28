@@ -136,3 +136,6 @@ subsystem mi_display
     dirname /dev/mi_display
 
 /dev/mi_display/*         0666   root       graphics
+
+# HTSR
+/sys/devices/platform/goodix_ts.0/goodix_ts_report_rate         0660    system    system 
