@@ -38,5 +38,8 @@ apply_patch "hardware/xiaomi" "0001-TouchFeature.patch"
 apply_patch "hardware/xiaomi" "0002-DisplayFeature.patch"
 apply_patch "hardware/xiaomi" "0003-UDFPS.patch"
 
+echo "Exporting prebuilt headers path"
+export TARGET_PREBUILT_KERNEL_HEADERS=device/xiaomi/duchamp-kernel/kernel-uapi-headers.tar.gz
+
 
 echo "Done"
