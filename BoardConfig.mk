@@ -39,6 +39,11 @@ TARGET_NO_BOOTLOADER := true
 # Display
 TARGET_SCREEN_DENSITY := 440
 
+# Gadget
+SOONG_CONFIG_NAMESPACES += mediatek_gadget
+SOONG_CONFIG_mediatek_gadget += use_custom_usb_gadget_rc
+SOONG_CONFIG_mediatek_gadget_use_custom_usb_gadget_rc := true
+
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/mediatek/vintf/mediatek_framework_compatibility_matrix.xml \
