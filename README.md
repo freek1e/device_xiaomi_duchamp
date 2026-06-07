@@ -4,6 +4,8 @@ SPDX-FileCopyrightText: The LineageOS Project
 
 📦 [Download latest build](https://sourceforge.net/projects/clover-project-duchamp/)
 
+📢 [Announcements](https://t.me/akrapogluhell)
+
 ---
 
 Device configuration for Poco X6 Pro 5G/Redmi K70E
