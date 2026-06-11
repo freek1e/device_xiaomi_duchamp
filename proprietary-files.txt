@@ -1431,15 +1431,6 @@ odm/etc/vintf/manifest/manifest_vendor.xiaomi.hardware.aidl.mtdservice.xml
 odm/lib64/libmt_mitee.so
 vendor/lib64/vendor.xiaomi.hardware.aidl.mtdservice-V1-ndk.so
 
-# MiuiCamera
-product/priv-app/MiuiCamera/MiuiCamera.apk:system_ext/priv-app/MiuiCamera/MiuiCamera.apk;OVERRIDES=Aperture
-system_ext/lib64/libcamera_algoup_jni.xiaomi.so
-system_ext/lib64/libcamera_mianode_jni.xiaomi.so
-system_ext/lib64/libcamera_ispinterface_jni.xiaomi.so
-system_ext/lib64/libmtkisp_metadata_sys.so
-system_ext/lib64/vendor.mediatek.hardware.camera.isphal@1.0.so;MODULE_SUFFIX=-system_ext
-system_ext/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so;MODULE_SUFFIX=-system_ext
-
 # Neural Networks
 system/etc/public.libraries-mtk.txt
 system_ext/lib64/libapu_mdw_ext.mtk.so

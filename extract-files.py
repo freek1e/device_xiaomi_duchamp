@@ -19,7 +19,6 @@ from extract_utils.main import (
 
 namespace_imports = [
     'device/xiaomi/duchamp',
-    'device/xiaomi/duchamp-miuicamera',
     'hardware/mediatek',
     'hardware/xiaomi',
     'vendor/xiaomi/duchamp',
@@ -30,34 +29,17 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     return f'{lib}-{partition}' if partition == 'vendor' else None
 
 
-def lib_fixup_system_ext_suffix(lib: str, partition: str, *args, **kwargs):
-    return f'{lib}-{partition}' if partition == 'system_ext' else None
-
-
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     ('vendor.mediatek.hardware.apuware.utils-V1-ndk',
      'vendor.mediatek.hardware.apuware.utils@2.0',
      'vendor.mediatek.hardware.videotelephony-V1-ndk',): lib_fixup_vendor_suffix,
-    ('vendor.mediatek.hardware.camera.isphal@1.0',
-     'vendor.mediatek.hardware.camera.isphal-V1-ndk'): lib_fixup_system_ext_suffix,
 }
 
 
 blob_fixups: blob_fixups_user_type = {
     'system_ext/priv-app/ImsService/ImsService.apk': blob_fixup()
         .apktool_patch('blob-patches/ImsService/'),
-
-    'system_ext/priv-app/MiuiCamera/MiuiCamera.apk': blob_fixup()
-        .apktool_patch('blob-patches/MiuiCamera/'),
-
-    ('system_ext/lib64/libcamera_algoup_jni.xiaomi.so',
-     'system_ext/lib64/libcamera_mianode_jni.xiaomi.so',
-     'system_ext/lib64/libcamera_ispinterface_jni.xiaomi.so'): blob_fixup()
-        .add_needed('libgui_shim_miuicamera.so'),
-
-    'system_ext/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
 
     ('system_ext/etc/init/init.vtservice.rc',
      'vendor/etc/init/android.hardware.neuralnetworks-shim-service-mtk.rc'): blob_fixup()
@@ -230,4 +212,3 @@ module = ExtractUtilsModule(
 if __name__ == '__main__':
     utils = ExtractUtils.device(module)
     utils.run()
-

@@ -328,9 +328,6 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
     hardware/xiaomi
-# Miui Camera
-$(call inherit-product-if-exists, device/xiaomi/duchamp-miuicamera/device.mk)
-
 
 # Thermal files
 PRODUCT_COPY_FILES += \
