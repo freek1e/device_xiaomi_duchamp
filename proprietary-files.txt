@@ -1,4 +1,4 @@
-# Unpinned blobs from duchamp_global-user 15 AP3A.240905.015.A2 OS2.0.209.0.VNLMIXM release-keys
+# Unpinned blobs from duchamp_global-user 15 AP3A.240905.015.A2 OS3.0.6.0.WNLMIXM release-keys
 # duchamp: duchamp_global-user 14 UP1A.230905.011 V816.0.2.0.UNLMIXM release-keys
 
 # AEE
@@ -11,6 +11,9 @@ vendor/firmware/aw882xx_acf.bin
 vendor/lib64/hw/android.hardware.audio@7.1-impl-mediatek.so
 vendor/lib64/hw/android.hardware.soundtrigger3-impl.so
 vendor/lib64/hw/audio.primary.mediatek.so;SYMLINK=vendor/lib64/hw/audio.primary.mt6897.so
+vendor/lib/libmisight.so
+vendor/lib64/libmisight.so
+vendor/lib64/libMiPhotoFilter.so
 vendor/lib64/hw/sound_trigger.primary.default.so
 vendor/lib64/hw/vendor.mediatek.hardware.audio-impl.so
 vendor/lib64/libMtkSpeechEnh.so
@@ -282,7 +285,7 @@ vendor/lib64/libBasicModule.so
 vendor/lib64/libHISCppAlgos.so
 vendor/lib64/libJpgEncPipe.so
 vendor/lib64/libMiMotion.so
-vendor/lib64/libMiVideoFilter.so
+system_ext/lib64/libMiVideoFilter.so:vendor/lib64/libMiVideoFilter.so
 vendor/lib64/libOpenCL.so
 vendor/lib64/libSQLiteModule_VER_ALL.so
 vendor/lib64/libXMFaceFocus.so
@@ -1376,12 +1379,6 @@ vendor/lib64/mt6897/libmnl.so;SYMLINK=vendor/lib64/libmnl.so
 vendor/lib64/mtk_lbs_service-impl.so
 vendor/lib64/vendor.mediatek.hardware.gnss-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.lbs-V1-ndk.so
-
-# HotwordEnrollment
-product/priv-app/HotwordEnrollmentOKGoogleRISCV/HotwordEnrollmentOKGoogleRISCV.apk
-product/priv-app/HotwordEnrollmentXGoogleRISCV/HotwordEnrollmentXGoogleRISCV.apk
-system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
-system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
 # Keymint
 vendor/bin/hw/android.hardware.identity-service.mitee@5.0

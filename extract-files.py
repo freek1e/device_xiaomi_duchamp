@@ -102,12 +102,14 @@ blob_fixups: blob_fixups_user_type = {
      'odm/lib64/libalLDC.so',
      'odm/lib64/libalAILDC.so',
      'odm/lib64/libalhLDC.so',
+     'vendor/lib64/libMiPhotoFilter.so',
      'vendor/lib64/libMiVideoFilter.so',
      'vendor/lib64/mt6897/libneuralnetworks_sl_driver_mtk_prebuilt.so'): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
         .clear_symbol_version('AHardwareBuffer_describe')
         .clear_symbol_version('AHardwareBuffer_getNativeHandle')
+        .clear_symbol_version('AHardwareBuffer_isSupported')
         .clear_symbol_version('AHardwareBuffer_lock')
         .clear_symbol_version('AHardwareBuffer_lockPlanes')
         .clear_symbol_version('AHardwareBuffer_release')
@@ -203,9 +205,8 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/libbluetooth_audio_session_aidl_mtk.so'): blob_fixup()
         .replace_needed('android.hardware.bluetooth.audio-V3-ndk.so', 'android.hardware.bluetooth.audio-V3-ndk-v34.so'),
 
-
     'system_ext/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+        .replace_needed('android.hardware.graphics.common-V6-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
 
     ('system_ext/lib64/libcamera_algoup_jni.xiaomi.so',
      'system_ext/lib64/libcamera_mianode_jni.xiaomi.so',

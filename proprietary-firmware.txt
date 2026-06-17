@@ -1,4 +1,4 @@
-# Unpinned blobs from HYPEROS OS2.0.209.0.VNLMIXM (duchamp) fastboot package
+# Unpinned blobs from HYPEROS OS3.0.6.0.WNLMIXM (duchamp) fastboot package
 
 apusys.img;AB
 audio_dsp.img;AB
