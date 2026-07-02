@@ -1115,6 +1115,7 @@ vendor/etc/vintf/manifest/manifest_hwcomposer.xml
 vendor/etc/vintf/manifest/manifest_mmlpq.xml
 vendor/etc/vintf/manifest/mapper.mediatek.xml
 vendor/firmware/mali_csffw.bin
+vendor/lib64/android.frameworks.displayservice@1.0.so
 vendor/lib64/egl/libGLES_meow.so
 vendor/lib64/egl/libMEOW_data.so
 vendor/lib64/egl/libMEOW_gift.so
@@ -1430,7 +1431,7 @@ vendor/lib64/libcodec2_vpp_fa_plugin.so
 vendor/lib64/libcodec2_vpp_mi_plugin.so
 vendor/lib64/libcodec2_vpp_qt_plugin.so
 vendor/lib64/libcodec2_vpp_rs_plugin.so
-vendor/lib64/libformatter.so
+vendor/lib64/libformatter.so:vendor/lib64/libformatter-v34.so;FIX_SONAME
 vendor/lib64/libsfplugin_ccodec_utils.so:vendor/lib64/libsfplugin_ccodec_utils-v34.so;FIX_SONAME
 
 # Modules
@@ -1442,7 +1443,7 @@ vendor/etc/init/hw/init.mtkgki.rc
 odm/bin/mtd_mitee
 odm/etc/init/vendor.xiaomi.hardware.aidl.mtdservice-miteeservice.rc
 odm/etc/vintf/manifest/manifest_vendor.xiaomi.hardware.aidl.mtdservice.xml
-odm/lib64/libmt_mitee.so
+odm/lib64/libmt_mitee.so;DISABLE_DEPS
 vendor/lib64/vendor.xiaomi.hardware.aidl.mtdservice-V1-ndk.so
 
 # Neural Networks

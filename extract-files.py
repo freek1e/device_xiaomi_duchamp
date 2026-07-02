@@ -146,6 +146,7 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v34.so')
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v34.so')
         .replace_needed('libui.so', 'libui-v34.so'),
+        .replace_needed('libformatter.so', 'libformatter-v34.so')
 
     'vendor/lib64/libcodec2_hidl@1.2-v34.so': blob_fixup()
         .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-v35.so')
@@ -198,7 +199,7 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
 
     'vendor/lib64/hw/android.hardware.soundtrigger3-impl.so': blob_fixup()
-        .replace_needed('android.hardware.soundtrigger3-V1-ndk.so', 'android.hardware.soundtrigger3-V3-ndk.so'),
+        .replace_needed('android.hardware.soundtrigger3-V1-ndk.so', 'android.hardware.soundtrigger3-V4-ndk.so'),
 
     ('vendor/lib64/android.hardware.bluetooth.audio-impl-mediatek.so',
      'vendor/lib64/hw/audio.bluetooth.default.so',
