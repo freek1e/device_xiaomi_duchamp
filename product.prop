@@ -44,3 +44,6 @@ mmd.zram.writeback.limit.enabled=false
 mmd.zram.writeback.max_idle_seconds=86400
 mmd.zram.writeback.min_idle_seconds=0
 ro.zram_backing_device_min_free_mb=1536
+
+# maintainer
+ro.lunaris.maintainer=adarsh_8300u
